@@ -1,5 +1,5 @@
 {
-  "originHash" : "7293155e09ea23cea80aedc50ac03068b34dbf22e0f48cda3fc94608d68aed7b",
+  "originHash" : "d4edc8d1308db10e2b6437bb822cedca4495743f93ddc480469c434ea26c08c4",
   "pins" : [
     {
       "identity" : "dependencyinjector",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "fc409d60cbf3bb76b409bb8cc63453f8df7e852c",
         "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "factory",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/hmlongco/Factory",
-      "state" : {
-        "revision" : "fb04a8918848e413d3921d346a23bae7f81088d9",
-        "version" : "2.4.3"
       }
     },
     {
@@ -33,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hishd/NetworkingService",
       "state" : {
-        "revision" : "cb6f22ef5e060547c9aa9d46379ffd5ff969583c",
-        "version" : "1.0.7"
+        "revision" : "6fca3f2b6303201513d112487e1a0b478046cd03",
+        "version" : "1.0.4"
       }
     }
   ],

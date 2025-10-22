@@ -10,7 +10,7 @@ import CoreLocation
 import NetworkingService
 import SkyWizardModel
 
-public final class GeocodingServiceRemote: GeocodingService {
+public final class GeocodingServiceRemote: GeocodingService, @unchecked Sendable {
     
     let dataTransferService: NetworkDataTransferService
     
@@ -18,13 +18,11 @@ public final class GeocodingServiceRemote: GeocodingService {
         self.dataTransferService = dataTransferService
     }
     
-    public func geocode(with location: CLLocationCoordinate2D) async throws -> GeocodeData {
-        
-        //Checking task cancellation
-        try Task.checkCancellation()
-        
-        let result: GeocodeResultDTO = try await dataTransferService.request(with: GeocodingEndpoints.getGeocoding(latitude: location.latitude, longitude: location.longitude))
-        let value: GeocodeData = try result.mapToGeocodeResult()
-        return value
+    public func geocode(with location: CLLocationCoordinate2D) async throws -> TaskType {
+        Task {
+            let task = await dataTransferService.request(with: GeocodingEndpoints.getGeocoding(latitude: location.latitude, longitude: location.longitude))
+            let value: GeocodeData = try await task.value.mapToGeocodeResult()
+            return value
+        }
     }
 }

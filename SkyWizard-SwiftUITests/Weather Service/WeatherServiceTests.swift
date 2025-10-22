@@ -6,26 +6,13 @@
 //
 
 import Testing
+import DependencyInjector
 import NetworkingService
 import CoreLocation
-import SkyWizardService
-import SkyWizardModel
-import SkyWizardEnum
+@testable import SkyWizard_SwiftUI
 
 struct WeatherServiceTests {
-    let sut: WeatherService = {
-        let networkConfig: ApiNetworkConfig = {
-            guard let url = URL(string: "https://api.open-meteo.com/v1") else {
-                fatalError("Could not create URL from string: https://api.open-meteo.com/v1")
-            }
-            return .init(baseUrl: url)
-        }()
-        
-        let networkService: NetworkService = DefaultNetworkService.init(networkConfig: networkConfig, sessionManagerType: .defaultType, loggerType: .defaultType)
-        let dataTransferService: NetworkDataTransferService = DefaultNetworkDataTransferService(networkService: networkService, logger: DefaultNetworkDataTransferErrorLogger())
-        
-        return WeatherServiceRemote(dataTransferService: dataTransferService)
-    }()
+    @Injectable(\.weatherServiceRemote) var sut: WeatherService
     
     let testingLatitude: Double = 52.253643
     let testingLongitude: Double = -0.862097

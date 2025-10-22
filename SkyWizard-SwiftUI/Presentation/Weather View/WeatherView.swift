@@ -66,8 +66,10 @@ extension WeatherView {
             backgroundColorGradient
                 .ignoresSafeArea()
             HouseView(
+                isEffectsEnabled: true,
                 lightIntensity: weatherDataStore.weatherTypeResource.lightIntensity,
-                weatherType: weatherDataStore.currentWeatherType
+                weatherType: weatherDataStore.currentWeatherType,
+                allowRotation: !isPresented
             )
             .ignoresSafeArea()
             weatherIcon
@@ -112,7 +114,7 @@ extension WeatherView {
             }
             .foregroundStyle(mainTitleColor)
             HStack(spacing: 8) {
-                Text("Real feel:")
+                Text("Feels like")
                     .font(.getFont(type: .medium, size: 18))
                 SubTemperatureView(temperature: $weatherDataStore.realFeel)
                 Spacer()
@@ -163,6 +165,11 @@ extension WeatherView {
     private var sheetView: some View {
         SheetView(isBackgroundVisible: false, isPresented: $isPresented) {
             VStack {
+                if let today = weatherDataStore.dailyWeatherData.first {
+                    let yesterday = weatherDataStore.dailyWeatherData.dropFirst().first
+                    AISummaryView(today: today, yesterday: yesterday)
+                }
+                
                 HourlyWeatherView(hourlyData: weatherDataStore.hourlyWeatherData)
                     .padding(.horizontal, 25)
                 DailyWeatherView(weatherData: weatherDataStore.dailyWeatherData)
@@ -170,16 +177,14 @@ extension WeatherView {
                 Button {
                     navigation(route: .about)
                 } label: {
-                    Text("About Application")
-                        .font(.getFont(type: .semibold, size: 16))
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .foregroundStyle(.dayTitle)
-                        .background(.white)
-                        .clipShape(.rect(cornerRadius: 10))
-                        .padding(.horizontal, 25)
-                        .drawingGroup()
-                }
+                                    Text("About Application")
+                                        .font(.getFont(type: .semibold, size: 16))
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 50)
+                                        .foregroundStyle(.dayTitle)
+                                        .glassEffect(.clear.tint(.white).interactive(), in: .rect(cornerRadius: 30))
+                                        .padding(.horizontal, 25)
+                                }
             }
         }
     }
@@ -372,3 +377,5 @@ extension CurrentWeatherType {
         .environmentObject(weatherDataStore)
 }
 #endif
+
+

@@ -12,6 +12,7 @@ import SceneKit
 struct HouseViewRepresentable: UIViewRepresentable {
     
     var lightIntensity: CGFloat
+    var allowRotation: Bool = true
     var onRenderFinished: (() -> Void)?
     
     class Coordinator: NSObject, SCNSceneRendererDelegate {
@@ -25,7 +26,7 @@ struct HouseViewRepresentable: UIViewRepresentable {
         var didRenderScene: (() -> Void)?
         let impactGenerator = UIImpactFeedbackGenerator(style: .light)
         var lastHapticTime: Date = .now
-        let hapticInterval: TimeInterval = 0.12
+        let hapticInterval: TimeInterval = 0.25
         
         override init() {
             super.init()
@@ -122,10 +123,11 @@ struct HouseViewRepresentable: UIViewRepresentable {
         
         sceneView.addGestureRecognizer(UIPinchGestureRecognizer(target: context.coordinator, action: nil))
         sceneView.addGestureRecognizer(UIRotationGestureRecognizer(target: context.coordinator, action: nil))
-
         
-        let panGesture = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.pan))
-        sceneView.addGestureRecognizer(panGesture)
+        if allowRotation {
+            let panGesture = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.pan))
+            sceneView.addGestureRecognizer(panGesture)
+        }
         
         return sceneView
     }

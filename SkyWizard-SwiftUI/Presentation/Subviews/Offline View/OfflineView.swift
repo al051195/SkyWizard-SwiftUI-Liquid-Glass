@@ -18,6 +18,8 @@ struct OfflineView: View {
                 Text("You are offline!")
                     .font(.title3)
                     .foregroundStyle(.white)
+                    .padding()
+                    .glassEffect(in : .rect(cornerRadius: 20))
             }
         }
     }
@@ -26,12 +28,14 @@ struct OfflineView: View {
 extension OfflineView {
     @ViewBuilder
     var offlineImage: some View {
-        if #available(iOS 17.0, *) {
+        if #available(iOS 26.0, *) {
             Image(systemName: "antenna.radiowaves.left.and.right.slash")
                 .resizable()
                 .frame(width: 52, height: 52)
                 .foregroundStyle(.white)
                 .symbolEffect(.pulse, options: .speed(3).repeating)
+                .padding()
+                .glassEffect(.clear.tint(.orange).interactive())
         } else {
             Image(systemName: "antenna.radiowaves.left.and.right.slash")
                 .resizable()

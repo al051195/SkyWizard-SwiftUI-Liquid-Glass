@@ -19,7 +19,7 @@ struct DailyWeatherView: View {
         }
         .frame(maxWidth: .infinity, alignment: .top)
         .frame(height: 260)
-        .glass(cornerRadius: 10, opacity: 0.9)
+        .glassEffect(.clear .interactive() .tint(.white), in: .rect(cornerRadius: 30))
     }
 }
 
@@ -28,3 +28,4 @@ struct DailyWeatherView: View {
     DailyWeatherView(weatherData: [.sample])
 }
 #endif
+

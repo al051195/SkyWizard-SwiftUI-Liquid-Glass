@@ -27,7 +27,7 @@ struct SheetView<Content: View>: View {
             let height = proxy.frame(in: .global).height
             let initialOffset: CGFloat = height - 300
             let maximumGestureOffset: CGFloat = (height/5) + 100
-            let maximumExpandedOffset: CGFloat = -(height / 4)
+            let maximumExpandedOffset: CGFloat = -(height / 2.5)
             let expansionTriggerOffset: CGFloat = 100
             
             ZStack {
@@ -56,9 +56,7 @@ struct SheetView<Content: View>: View {
             .offset(y: offset)
             .gesture(DragGesture().updating($gestureOffset) { value, out, _ in
                 out = value.translation.height
-                if -value.translation.height < maximumGestureOffset && -offset < maximumGestureOffset {
-                    onChange()
-                }
+                onChange(maximumExpandedOffset: maximumExpandedOffset)
             }
                 .onEnded({ value in
                     withAnimation {
@@ -82,9 +80,11 @@ struct SheetView<Content: View>: View {
         .ignoresSafeArea(.all, edges: .bottom)
     }
     
-    func onChange() {
+    func onChange(maximumExpandedOffset: CGFloat) {
         DispatchQueue.main.async {
-            self.offset = gestureOffset + lastOffset
+            let newOffset = gestureOffset + lastOffset
+            // Clamp offset between maximumExpandedOffset and 0
+            self.offset = min(0, max(maximumExpandedOffset, newOffset))
         }
     }
 }
@@ -122,3 +122,4 @@ private struct CustomCorner: Shape {
     }
 }
 #endif
+

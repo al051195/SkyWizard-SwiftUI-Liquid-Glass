@@ -14,6 +14,7 @@ struct HouseView: View {
     var isEffectsEnabled: Bool = true
     let lightIntensity: CGFloat
     let weatherType: CurrentWeatherType
+    var allowRotation: Bool = true
     @State private var isSceneLoading: Bool = true
     
     var body: some View {
@@ -39,7 +40,7 @@ struct HouseView: View {
 
 extension HouseView {
     private var houseImage: some View {
-        var view = HouseViewRepresentable(lightIntensity: lightIntensity)
+        var view = HouseViewRepresentable(lightIntensity: lightIntensity, allowRotation: allowRotation)
         view.onRenderFinished = {
             print("Render finished")
             withAnimation {

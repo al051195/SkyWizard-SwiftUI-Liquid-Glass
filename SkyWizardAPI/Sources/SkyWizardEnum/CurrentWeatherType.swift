@@ -8,7 +8,7 @@
 import Foundation
 
 //Enum for current day weather type, including all hours on current day
-@frozen public enum CurrentWeatherType: CaseIterable {
+public enum CurrentWeatherType: CaseIterable {
     case day_sunny
     case day_cloudy
     case day_rainy

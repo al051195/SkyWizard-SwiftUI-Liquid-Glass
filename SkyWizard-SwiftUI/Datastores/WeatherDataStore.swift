@@ -115,11 +115,9 @@ final class WeatherDataStore: @unchecked Sendable, ObservableObject {
     private func loadWeatherData(for coordinate: CLLocationCoordinate2D) async {
         self.currentWeatherTask?.cancel()
         do {
-            self.currentWeatherTask = Task{
-                try await weatherService.fetchWeather(for: coordinate)
-            }
+            self.currentWeatherTask = try await weatherService.fetchWeather(for: coordinate)
             let data = try await currentWeatherTask!.value
-            
+                        
             await updateData(from: data)
         } catch {
             await MainActor.run {
@@ -133,9 +131,7 @@ final class WeatherDataStore: @unchecked Sendable, ObservableObject {
         Logger.statistics.info("Location changed to : \(coordinates.latitude), \(coordinates.longitude)")
         self.currentGeocodingTask?.cancel()
         do {
-            self.currentGeocodingTask = Task {
-                try await geocodingService.geocode(with: coordinates)
-            }
+            self.currentGeocodingTask = try await geocodingService.geocode(with: coordinates)
             
             let location = try await currentGeocodingTask?.value
             guard let location else { return }
@@ -172,23 +168,19 @@ final class WeatherDataStore: @unchecked Sendable, ObservableObject {
         }
     }
     
-    func cancelCurrentTasks() {
+    func cancelCurrentTask() {
         currentWeatherTask?.cancel()
         currentGeocodingTask?.cancel()
         cancelable.removeAll()
     }
     
-    deinit {
-        cancelCurrentTasks()
-    }
-    
-#if DEBUG
+    #if DEBUG
     func changeWeatherType() {
         let type = CurrentWeatherType.allCases.randomElement()!
         self.currentWeatherType = type
         self.greetingMessage = type.greeting
     }
-#endif
+    #endif
 }
 
 enum WeatherDataStoreError: LocalizedError {
