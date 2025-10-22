@@ -8,26 +8,27 @@
 </p>
 
 <p>
-  	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone1.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone2.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone3.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone4.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone5.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone6.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone7.jpg" height="300">
+  	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone1.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone2.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone3.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone4.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone5.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone6.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone7.png" height="300">
 </p>
 
 <p>
-  	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad1.jpg" height="330">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad2.jpg" height="330">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad4.jpg" height="330">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad6.jpg" height="330">
+  	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad1.png" height="330">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad2.png" height="330">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad4.png" height="330">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad6.png" height="330">
 </p>
 
 ### What's new in version 2.0
 -  Freshly updated with a brand new liquid glass design
 -  New app icon designed for iOS 26
 -  AI-powered weather summary
+-  New Wizard Message design
 
 
 ### Overview
