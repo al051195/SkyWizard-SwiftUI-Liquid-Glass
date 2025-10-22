@@ -1,10 +1,10 @@
-
+## **Based on [SkyWizard-SwiftUI by hishd](https://github.com/hishd/SkyWizard-SwiftUI)**
 # Sky Wizard iOS
 
 <p>
-<img src="https://img.shields.io/badge/Swift-5.9-violet">
-<img src="https://img.shields.io/badge/iOS-16.6-green">
-<img src="https://img.shields.io/badge/XCode-16.0-blue">
+<img src="https://img.shields.io/badge/Swift-6.2-violet">
+<img src="https://img.shields.io/badge/iOS-26-green">
+<img src="https://img.shields.io/badge/XCode-26.0-blue">
 </p>
 
 <p>
@@ -24,12 +24,18 @@
 	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad6.jpg" height="330">
 </p>
 
+### What's new in version 2.0
+-  Freshly updated with a brand new liquid glass design
+-  New app icon designed for iOS 26
+-  AI-powered weather summary
+
+
 ### Overview
 
 Sky Wizard is a weather information application, developed for iOS devices. The app is open source and developed using **[open metro](https://open-meteo.com/)** api for weather updated and **[photon](https://photon.komoot.io)** for reverse geocoding.
 Both the integrated api services are free for non-commercial use and required an api key based on the number of api calls.
 
-**Note:** The application is mainly designed for iOS devices and therefore the iPad experience will be less optimized. The iPad experience will be improved in the future updates. Stay tuned 😉
+**Note:** The application is mainly designed for iOS and iPadOS devices and therefore the Apple Silicon Mac experience will be less optimized.�
 
 ### Project Structure
 
@@ -87,10 +93,3 @@ The 3D object was downloaded from the sketchfab platform (credits go to the owne
 - More 3D objects
 - Getting weather updates on different cities (currently set to users location only)
 
-### Visual Designs
-
-These designs contains the static house image which is used on low performing devices to enhance application performance.
-
-<p>
-  <img src="https://github.com/hishd/SkyWizard/blob/master/resources/VisualDesigns/mockups.gif" height="300">
-</p>
