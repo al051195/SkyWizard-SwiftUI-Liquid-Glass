@@ -30,13 +30,13 @@ struct AboutAppView: View {
                     imageName: "info.circle",
                     title: "Version",
                     subtitle: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-                    url: URL(string: "https://github.com/hishd/SkyWizard-SwiftUI")!
+                    url: URL(string: "https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/")!
                 )
                 AboutAppListItem(
                     imageName: "folder.circle",
                     title: "Project Repository",
                     subtitle: "GitHub",
-                    url: URL(string: "https://github.com/hishd/SkyWizard-SwiftUI")!
+                    url: URL(string: "https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/")!
                 )
             }
         }
