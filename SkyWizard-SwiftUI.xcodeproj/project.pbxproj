@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		712103E22EA8D9C200B5ABE0 /* Weather.icon in Resources */ = {isa = PBXBuildFile; fileRef = 712103E12EA8D9C200B5ABE0 /* Weather.icon */; };
+		988EE7CA2EABD7D7009AC059 /* LiquidGlassText in Frameworks */ = {isa = PBXBuildFile; productRef = 988EE7C92EABD7D7009AC059 /* LiquidGlassText */; };
 		FD0841A32CD7202D00604BF3 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */; };
 		FD0841AB2CD7307900604BF3 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A72CD7307900604BF3 /* Montserrat-Light.ttf */; };
 		FD0841AC2CD7307900604BF3 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A52CD7307900604BF3 /* Montserrat-Black.ttf */; };
@@ -16,7 +17,6 @@
 		FD0841AF2CD7307900604BF3 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A92CD7307900604BF3 /* Montserrat-Regular.ttf */; };
 		FD0841B02CD7307900604BF3 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841AA2CD7307900604BF3 /* Montserrat-SemiBold.ttf */; };
 		FD0841B32CD732A400604BF3 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0841B22CD732A400604BF3 /* Font+Extensions.swift */; };
-		FD0841B62CD743CD00604BF3 /* GlassModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0841B52CD743CD00604BF3 /* GlassModifier.swift */; };
 		FD0841B92CD7483A00604BF3 /* HourlyWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0841B82CD7483A00604BF3 /* HourlyWeatherView.swift */; };
 		FD0C62162CE8FF9300BD20EB /* sun_moon.json in Resources */ = {isa = PBXBuildFile; fileRef = FD0C62152CE8FF9300BD20EB /* sun_moon.json */; };
 		FD126D182CE76A7300B3654A /* WeatherMessagePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD126D172CE76A7300B3654A /* WeatherMessagePopup.swift */; };
@@ -82,9 +82,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		988EE7942EAAA47C009AC059 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		712103E02EA8D94C00B5ABE0 /* SkyWizard-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SkyWizard-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		712103E12EA8D9C200B5ABE0 /* Weather.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Weather.icon; sourceTree = "<group>"; };
+		988EE7852EAAA47B009AC059 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		988EE7872EAAA47B009AC059 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		FD0841A52CD7307900604BF3 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		FD0841A62CD7307900604BF3 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -94,7 +109,6 @@
 		FD0841AA2CD7307900604BF3 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		FD0841B12CD7308E00604BF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD0841B22CD732A400604BF3 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
-		FD0841B52CD743CD00604BF3 /* GlassModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassModifier.swift; sourceTree = "<group>"; };
 		FD0841B82CD7483A00604BF3 /* HourlyWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherView.swift; sourceTree = "<group>"; };
 		FD0C62152CE8FF9300BD20EB /* sun_moon.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sun_moon.json; sourceTree = "<group>"; };
 		FD126D172CE76A7300B3654A /* WeatherMessagePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMessagePopup.swift; sourceTree = "<group>"; };
@@ -162,6 +176,7 @@
 				FDB65E7B2CDC4F2600E4A52E /* NetworkingService in Frameworks */,
 				FD8574672CD9C572003D9D29 /* Lottie in Frameworks */,
 				FD4B92882CF0A84300EA05E7 /* SkyWizardModel in Frameworks */,
+				988EE7CA2EABD7D7009AC059 /* LiquidGlassText in Frameworks */,
 				FD4B92862CF0A84300EA05E7 /* SkyWizardEnum in Frameworks */,
 				FDB65E7E2CDC4F4E00E4A52E /* DependencyInjector in Frameworks */,
 				FD4B928A2CF0A84300EA05E7 /* SkyWizardService in Frameworks */,
@@ -178,6 +193,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		988EE7842EAAA47B009AC059 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				988EE7852EAAA47B009AC059 /* WidgetKit.framework */,
+				988EE7872EAAA47B009AC059 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FD0841A42CD7306E00604BF3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,7 +218,6 @@
 		FD0841B42CD743B900604BF3 /* View Modifiers */ = {
 			isa = PBXGroup;
 			children = (
-				FD0841B52CD743CD00604BF3 /* GlassModifier.swift */,
 				FDB65E772CDC28D400E4A52E /* IsVisibleModifier.swift */,
 			);
 			path = "View Modifiers";
@@ -238,6 +261,7 @@
 				FD4B92832CF0A82C00EA05E7 /* SkyWizardAPI */,
 				FD4B92982CF0E07000EA05E7 /* SkyWizard-SwiftUI.app */,
 				712103E02EA8D94C00B5ABE0 /* SkyWizard-SwiftUITests.xctest */,
+				988EE7842EAAA47B009AC059 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -472,6 +496,7 @@
 				FD32A9D52CB446CF002B8706 /* Sources */,
 				FD32A9D62CB446CF002B8706 /* Frameworks */,
 				FD32A9D72CB446CF002B8706 /* Resources */,
+				988EE7942EAAA47C009AC059 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -488,6 +513,7 @@
 				FD4B92852CF0A84300EA05E7 /* SkyWizardEnum */,
 				FD4B92872CF0A84300EA05E7 /* SkyWizardModel */,
 				FD4B92892CF0A84300EA05E7 /* SkyWizardService */,
+				988EE7C92EABD7D7009AC059 /* LiquidGlassText */,
 			);
 			productName = "SkyWizard-SwiftUI";
 			productReference = FD4B92982CF0E07000EA05E7 /* SkyWizard-SwiftUI.app */;
@@ -520,7 +546,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					FD32A9D82CB446CF002B8706 = {
@@ -545,6 +571,7 @@
 				FD8574652CD9C572003D9D29 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				FDB65E792CDC4F2600E4A52E /* XCRemoteSwiftPackageReference "NetworkingService" */,
 				FDB65E7C2CDC4F4E00E4A52E /* XCRemoteSwiftPackageReference "DependencyInjector" */,
+				988EE7C82EABD7D7009AC059 /* XCRemoteSwiftPackageReference "LiquidGlassText" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FD32A9D02CB446CF002B8706;
@@ -618,7 +645,6 @@
 				FDB65E762CDC033C00E4A52E /* HouseViewRepresentable.swift in Sources */,
 				FD8574782CD9CE2D003D9D29 /* StatePreviewWrapper.swift in Sources */,
 				FD8574882CD9D040003D9D29 /* SubTemperatureView.swift in Sources */,
-				FD0841B62CD743CD00604BF3 /* GlassModifier.swift in Sources */,
 				FDABC3962CE7A5FE0085EC95 /* AppRoute.swift in Sources */,
 				FDFD8FA32CE68CAB000B3C18 /* OfflineView.swift in Sources */,
 				FDB65E782CDC28D400E4A52E /* IsVisibleModifier.swift in Sources */,
@@ -805,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = "2.0.1-beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -842,7 +868,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = "2.0.1-beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -923,6 +949,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		988EE7C82EABD7D7009AC059 /* XCRemoteSwiftPackageReference "LiquidGlassText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DanielCrompton123/LiquidGlassText";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		FD8574652CD9C572003D9D29 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
@@ -950,6 +984,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		988EE7C92EABD7D7009AC059 /* LiquidGlassText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 988EE7C82EABD7D7009AC059 /* XCRemoteSwiftPackageReference "LiquidGlassText" */;
+			productName = LiquidGlassText;
+		};
 		FD4B92852CF0A84300EA05E7 /* SkyWizardEnum */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SkyWizardEnum;

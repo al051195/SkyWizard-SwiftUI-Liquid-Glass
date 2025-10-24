@@ -1,5 +1,5 @@
 {
-  "originHash" : "d4edc8d1308db10e2b6437bb822cedca4495743f93ddc480469c434ea26c08c4",
+  "originHash" : "c3b9c20b22505fd237a704b6ebc447858f2b499d4f633011f5adf3bd0141d608",
   "pins" : [
     {
       "identity" : "dependencyinjector",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "fc409d60cbf3bb76b409bb8cc63453f8df7e852c",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "liquidglasstext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DanielCrompton123/LiquidGlassText",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d5e8f4207a3f7b1b088ae1a14e8a73196d828352"
       }
     },
     {

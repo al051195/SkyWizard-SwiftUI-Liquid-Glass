@@ -10,6 +10,7 @@ import Lottie
 import SceneKit
 import DependencyInjector
 import SkyWizardEnum
+import LiquidGlassText
 
 struct WeatherView: View {
     @State private var isPresented: Bool = false
@@ -106,29 +107,55 @@ extension WeatherView {
     private var temperatureView: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top) {
-                Text("\(weatherDataStore.currentTemperature)")
-                    .font(.getFont(type: .regular, size: 76))
-                Text("0")
-                    .font(.getFont(type: .regular, size: 26))
+                LiquidGlassText("\(weatherDataStore.currentTemperature)",
+                                glass: .clear.interactive().tint(.white.opacity(0.1)),
+                    size: 76,
+                    weight: .black,
+                                design: .default
+                )
+                //Text("\(weatherDataStore.currentTemperature)")
+                //    .font(.getFont(type: .regular, size: 76))
+                //Text("0")
+                //    .font(.getFont(type: .regular, size: 26))
+                LiquidGlassText("0",
+                                glass: .clear.interactive().tint(.white.opacity(0.1)),
+                    size: 26,
+                    weight: .black,
+                                design: .default
+                )
                 Spacer()
             }
             .foregroundStyle(mainTitleColor)
             HStack(spacing: 8) {
-                Text("Feels like")
-                    .font(.getFont(type: .medium, size: 18))
+                LiquidGlassText("Feels like",
+                                glass: .clear.interactive().tint(.white.opacity(0.1)),
+                    size: 18,
+                    weight: .black,
+                                design: .rounded
+                )
+               // Text("Feels like")
+               //     .font(.getFont(type: .medium, size: 18))
                 SubTemperatureView(temperature: $weatherDataStore.realFeel)
                 Spacer()
             }
             .padding(.top, 6)
             .foregroundStyle(mainTitleColor)
         }.padding(.bottom, 16)
+            .shadow(color: .black.opacity(0.1), radius: 16)
+
     }
     
     private var currentCityView: some View {
         HStack {
-            Text(weatherDataStore.currentCity)
-                .font(.getFont(type: .medium, size: 26))
-                .padding(.trailing, 5)
+            LiquidGlassText(weatherDataStore.currentCity,
+                            glass: .clear.interactive().tint(.white.opacity(0.1)),
+                size: 26,
+                weight: .black,
+                            design: .rounded
+            )
+            //Text(weatherDataStore.currentCity)
+            //    .font(.getFont(type: .medium, size: 26))
+            //    .padding(.trailing, 5)
             Button {
                 #if DEBUG
                 weatherDataStore.changeWeatherType()
@@ -137,6 +164,7 @@ extension WeatherView {
                 Image(systemName: "location.circle")
                     .resizable()
                     .frame(width: 24, height: 24)
+                    .glassEffect(.clear.interactive().tint(.clear))
             }
 
         }
@@ -377,5 +405,6 @@ extension CurrentWeatherType {
         .environmentObject(weatherDataStore)
 }
 #endif
+
 
 
