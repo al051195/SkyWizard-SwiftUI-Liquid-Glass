@@ -94,4 +94,6 @@ The 3D object was downloaded from the sketchfab platform (credits go to the owne
 - More 3D objects
 - Getting weather updates on different cities (currently set to users location only)
 - Widgets
+- Customize the App Icon ( coming in v2.1 )
+- Weather alerts
 
