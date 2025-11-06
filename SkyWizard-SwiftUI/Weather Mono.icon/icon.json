@@ -1,44 +1,48 @@
 {
-  "fill" : {
-    "automatic-gradient" : "extended-srgb:0.00000,0.47843,1.00000,1.00000"
-  },
+  "fill" : "system-dark",
   "groups" : [
     {
-      "blend-mode" : "normal",
       "blur-material" : 0.5,
       "layers" : [
         {
+          "blend-mode" : "normal",
+          "fill" : {
+            "automatic-gradient" : "extended-gray:1.00000,1.00000"
+          },
+          "glass" : true,
           "image-name" : "cloud.png",
           "name" : "cloud",
+          "opacity" : 1,
           "position" : {
             "scale" : 1,
             "translation-in-points" : [
-              241.60986328125,
-              61.17724609375
+              241.6,
+              61.2
             ]
           }
         }
       ],
-      "position" : {
-        "scale" : 1.1,
-        "translation-in-points" : [
-          -78.874267578125,
-          -39.8175048828125
-        ]
-      },
+      "lighting" : "individual",
       "shadow" : {
         "kind" : "neutral",
         "opacity" : 0.5
       },
+      "specular" : true,
       "translucency" : {
         "enabled" : true,
-        "value" : 0.8
+        "value" : 0.5
       }
     },
     {
       "blur-material" : 0.5,
       "layers" : [
         {
+          "blend-mode" : "normal",
+          "fill" : {
+            "automatic-gradient" : "extended-gray:1.00000,1.00000"
+          },
+          "glass" : true,
+          "hidden" : false,
           "image-name" : "sun-3.png",
           "name" : "sun-3",
           "position" : {
@@ -51,17 +55,11 @@
         }
       ],
       "lighting" : "individual",
-      "position" : {
-        "scale" : 1,
-        "translation-in-points" : [
-          0,
-          0
-        ]
-      },
       "shadow" : {
-        "kind" : "neutral",
-        "opacity" : 0.75
+        "kind" : "layer-color",
+        "opacity" : 0.5
       },
+      "specular" : true,
       "translucency" : {
         "enabled" : true,
         "value" : 0.5

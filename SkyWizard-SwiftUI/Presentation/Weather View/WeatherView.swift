@@ -174,17 +174,35 @@ extension WeatherView {
                     .padding(.horizontal, 25)
                 DailyWeatherView(weatherData: weatherDataStore.dailyWeatherData)
                     .padding(.horizontal, 25)
-                Button {
-                    navigation(route: .about)
-                } label: {
-                                    Text("About Application")
-                                        .font(.getFont(type: .semibold, size: 16))
-                                        .frame(maxWidth: .infinity)
-                                        .frame(height: 50)
-                                        .foregroundStyle(.dayTitle)
-                                        .glassEffect(.clear.tint(.white).interactive(), in: .rect(cornerRadius: 30))
-                                        .padding(.horizontal, 25)
-                                }
+                
+                // Boutons About et Settings côte à côte
+                HStack(spacing: 15) {
+                    // Bouton About
+                    Button {
+                        navigation(route: .about)
+                    } label: {
+                        Text("About Application")
+                            .font(.getFont(type: .semibold, size: 16))
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .foregroundStyle(.dayTitle)
+                            .glassEffect(.clear.tint(.white).interactive(), in: .rect(cornerRadius: 30))
+                    }
+                    
+                    // Bouton Settings (engrenage)
+                    Button {
+                        navigation(route: .settings)
+                    } label: {
+                        Image(systemName: "gear")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.dayTitle)
+                            .frame(width: 50, height: 50)
+                            .glassEffect(.clear.tint(.white).interactive(), in: .circle)
+                    }
+                }
+                .padding(.horizontal, 25)
             }
         }
     }
@@ -377,5 +395,8 @@ extension CurrentWeatherType {
         .environmentObject(weatherDataStore)
 }
 #endif
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
