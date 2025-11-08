@@ -4,6 +4,8 @@
   },
   "groups" : [
     {
+      "blend-mode" : "normal",
+      "blur-material" : 0.5,
       "layers" : [
         {
           "image-name" : "cloud.png",
@@ -15,12 +17,32 @@
               61.17724609375
             ]
           }
-        },
+        }
+      ],
+      "position" : {
+        "scale" : 1.1,
+        "translation-in-points" : [
+          -78.874267578125,
+          -39.8175048828125
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.8
+      }
+    },
+    {
+      "blur-material" : 0.5,
+      "layers" : [
         {
           "image-name" : "sun-3.png",
           "name" : "sun-3",
           "position" : {
-            "scale" : 1.75,
+            "scale" : 1.65,
             "translation-in-points" : [
               0,
               0
@@ -28,6 +50,7 @@
           }
         }
       ],
+      "lighting" : "individual",
       "position" : {
         "scale" : 1,
         "translation-in-points" : [
@@ -37,7 +60,7 @@
       },
       "shadow" : {
         "kind" : "neutral",
-        "opacity" : 0.5
+        "opacity" : 0.75
       },
       "translucency" : {
         "enabled" : true,

@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< Updated upstream
 		712103E22EA8D9C200B5ABE0 /* Weather.icon in Resources */ = {isa = PBXBuildFile; fileRef = 712103E12EA8D9C200B5ABE0 /* Weather.icon */; };
+=======
+		71E2A6A62EBA957C00A87A08 /* Weather.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6A52EBA957C00A87A08 /* Weather.icon */; };
+		71E2A6AC2EBAAFB500A87A08 /* Weather Colorful.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6AA2EBAAFB500A87A08 /* Weather Colorful.icon */; };
+		71E2A6AD2EBAAFB500A87A08 /* Weather Mono.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6AB2EBAAFB500A87A08 /* Weather Mono.icon */; };
+		988EE7CA2EABD7D7009AC059 /* LiquidGlassText in Frameworks */ = {isa = PBXBuildFile; productRef = 988EE7C92EABD7D7009AC059 /* LiquidGlassText */; };
+>>>>>>> Stashed changes
 		FD0841A32CD7202D00604BF3 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */; };
 		FD0841AB2CD7307900604BF3 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A72CD7307900604BF3 /* Montserrat-Light.ttf */; };
 		FD0841AC2CD7307900604BF3 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A52CD7307900604BF3 /* Montserrat-Black.ttf */; };
@@ -84,7 +91,15 @@
 
 /* Begin PBXFileReference section */
 		712103E02EA8D94C00B5ABE0 /* SkyWizard-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SkyWizard-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+<<<<<<< Updated upstream
 		712103E12EA8D9C200B5ABE0 /* Weather.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Weather.icon; sourceTree = "<group>"; };
+=======
+		71E2A6A52EBA957C00A87A08 /* Weather.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Weather.icon; sourceTree = "<group>"; };
+		71E2A6AA2EBAAFB500A87A08 /* Weather Colorful.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Colorful.icon"; sourceTree = "<group>"; };
+		71E2A6AB2EBAAFB500A87A08 /* Weather Mono.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Mono.icon"; sourceTree = "<group>"; };
+		988EE7852EAAA47B009AC059 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		988EE7872EAAA47B009AC059 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+>>>>>>> Stashed changes
 		FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		FD0841A52CD7307900604BF3 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		FD0841A62CD7307900604BF3 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -152,6 +167,11 @@
 			path = "AI Summary View";
 			sourceTree = "<group>";
 		};
+		71E2A6A72EBAAC1E00A87A08 /* Settings View */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Settings View";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +223,7 @@
 		FD0841B72CD7481400604BF3 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				71E2A6A72EBAAC1E00A87A08 /* Settings View */,
 				715F0D312EA912FE00C11912 /* AI Summary View */,
 				FD1DF3102CEF91B40031B319 /* House View */,
 				FD126D162CE7696800B3654A /* Weather Message */,
@@ -258,7 +279,9 @@
 				FD949A722CDD613800F8CF48 /* Datastores */,
 				FD32A9F62CB44943002B8706 /* Util */,
 				FD32A9F52CB4493E002B8706 /* Other */,
-				712103E12EA8D9C200B5ABE0 /* Weather.icon */,
+				71E2A6A52EBA957C00A87A08 /* Weather.icon */,
+				71E2A6AA2EBAAFB500A87A08 /* Weather Colorful.icon */,
+				71E2A6AB2EBAAFB500A87A08 /* Weather Mono.icon */,
 			);
 			path = "SkyWizard-SwiftUI";
 			sourceTree = "<group>";
@@ -479,6 +502,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				715F0D312EA912FE00C11912 /* AI Summary View */,
+				71E2A6A72EBAAC1E00A87A08 /* Settings View */,
 			);
 			name = "SkyWizard-SwiftUI";
 			packageProductDependencies = (
@@ -568,11 +592,13 @@
 				FD0841AC2CD7307900604BF3 /* Montserrat-Black.ttf in Resources */,
 				FD0841AD2CD7307900604BF3 /* Montserrat-Bold.ttf in Resources */,
 				FD4B92902CF0AA0000EA05E7 /* rain_fall.sks in Resources */,
-				712103E22EA8D9C200B5ABE0 /* Weather.icon in Resources */,
+				71E2A6A62EBA957C00A87A08 /* Weather.icon in Resources */,
 				FD4B92912CF0AA0000EA05E7 /* Assets.xcassets in Resources */,
 				FD0841AE2CD7307900604BF3 /* Montserrat-Medium.ttf in Resources */,
 				FD0841AF2CD7307900604BF3 /* Montserrat-Regular.ttf in Resources */,
 				FDB65E732CDC030300E4A52E /* wizard_house.scn in Resources */,
+				71E2A6AC2EBAAFB500A87A08 /* Weather Colorful.icon in Resources */,
+				71E2A6AD2EBAAFB500A87A08 /* Weather Mono.icon in Resources */,
 				FD0841B02CD7307900604BF3 /* Montserrat-SemiBold.ttf in Resources */,
 				FDABC38D2CE778CF0085EC95 /* unknown_weather.json in Resources */,
 				FD8574702CD9C690003D9D29 /* snow.json in Resources */,
@@ -785,7 +811,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "2.0-dev";
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyWizard-SwiftUI/Other/Preview Content\"";
 				DEVELOPMENT_TEAM = 9Y9F764TSC;
 				ENABLE_PREVIEWS = YES;
@@ -805,7 +831,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< Updated upstream
 				MARKETING_VERSION = 2.0.0;
+=======
+				MARKETING_VERSION = "2.1-Release";
+>>>>>>> Stashed changes
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -822,7 +852,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "2.0-dev";
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyWizard-SwiftUI/Other/Preview Content\"";
 				DEVELOPMENT_TEAM = 9Y9F764TSC;
 				ENABLE_PREVIEWS = YES;
@@ -842,7 +872,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< Updated upstream
 				MARKETING_VERSION = 2.0.0;
+=======
+				MARKETING_VERSION = "2.1-Release";
+>>>>>>> Stashed changes
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

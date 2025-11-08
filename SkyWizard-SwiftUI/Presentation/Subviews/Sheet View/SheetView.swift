@@ -27,7 +27,7 @@ struct SheetView<Content: View>: View {
             let height = proxy.frame(in: .global).height
             let initialOffset: CGFloat = height - 300
             let maximumGestureOffset: CGFloat = (height/5) + 100
-            let maximumExpandedOffset: CGFloat = -(height / 2.5)
+            let maximumExpandedOffset: CGFloat = -(height / 2.4)
             let expansionTriggerOffset: CGFloat = 100
             
             ZStack {
