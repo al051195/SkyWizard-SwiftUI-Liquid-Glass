@@ -20,7 +20,7 @@ extension AppRoute {
         case .about:
             AboutAppView()
         case .settings:
-            ChangeAppIconView() // ou ChangeAppIconView() si c’est ce que tu veux
+            ChangeAppIconView()
         }
     }
 }

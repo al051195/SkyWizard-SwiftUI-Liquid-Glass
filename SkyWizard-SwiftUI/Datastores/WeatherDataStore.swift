@@ -68,6 +68,14 @@ final class WeatherDataStore: @unchecked Sendable, ObservableObject {
         }
     }
     
+    // Public API to load weather for a specific coordinate (used by OtherLocationsView)
+    public func loadWeather(for coordinate: CLLocationCoordinate2D) {
+        Task {
+            await loadWeatherData(for: coordinate)
+            await geocodeLocation(with: coordinate)
+        }
+    }
+    
     private func startLoadingLocation() {
         self.isLocationLoadingStarted = true
         locationService.locationResult
@@ -195,3 +203,4 @@ extension WeatherDataStoreError {
         }
     }
 }
+

@@ -38,12 +38,6 @@ struct AISummaryView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-             //RoundedRectangle(cornerRadius: 5)
-             //   .frame(width: 56, height: 4.5, alignment: .init(horizontal: .center, vertical: .top))
-             //   .padding(.top, 2)
-             //   .drawingGroup()
-             //   .foregroundStyle(.sheetHandle)
-            
             Text("AI Summary")
                 .font(.getFont(type: .bold, size: 20))
                 .foregroundStyle(

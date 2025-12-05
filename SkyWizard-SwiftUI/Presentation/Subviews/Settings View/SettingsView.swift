@@ -8,13 +8,13 @@
 import SwiftUI
 
 enum AppIcon: String, CaseIterable, Identifiable {
-    case `default` = "AppIcon"              // Icône par défaut (ne pas mettre "Weather")
-    case alternative1 = "Weather Mono"      // Nom exact du fichier .icon sans extension
-    case alternative2 = "Weather Colorful"  // Nom exact du fichier .icon sans extension
-
+    case `default` = "AppIcon"
+    case alternative1 = "Weather Mono"
+    case alternative2 = "Weather Colorful"
+    case alternative3 = "Weather Cool"
+    
     var id: String { rawValue }
 
-    /// L'icône à passer à setAlternateIconName (nil = icône par défaut)
     var iconName: String? {
         switch self {
         case .default:
@@ -24,27 +24,21 @@ enum AppIcon: String, CaseIterable, Identifiable {
         }
     }
 
-    /// Une description user-friendly
     var description: String {
         switch self {
-        case .default:
-            return "Default"
-        case .alternative1:
-            return "Monochrome"
-        case .alternative2:
-            return "Colored"
+        case .default: return "Default"
+        case .alternative1: return "Mono"
+        case .alternative2: return "Colored"
+        case .alternative3: return "Cool"
         }
     }
 
-    /// Nom de l'image d'aperçu dans Assets
     var previewImageName: String {
         switch self {
-        case .default:
-            return "Weather-Preview"
-        case .alternative1:
-            return "Weather Mono-Preview"
-        case .alternative2:
-            return "Weather Colorful-Preview"
+        case .default: return "Weather-Preview"
+        case .alternative1: return "Weather Mono-Preview"
+        case .alternative2: return "Weather Colorful-Preview"
+        case .alternative3: return "Weather Cool-Preview"
         }
     }
 }
@@ -91,55 +85,55 @@ struct ChangeAppIconView: View {
     var body: some View {
         List {
             Section(header: Text("Application Icon")) {
-                       }
-            Section {
-                ForEach(AppIcon.allCases) { icon in
-                    Button(action: {
-                        settings.updateIcon(to: icon)
-                    }) {
-                        HStack(spacing: 15) {
-                            // Image d'aperçu
-                            if let uiImage = UIImage(named: icon.previewImageName) {
-                                Image(uiImage: uiImage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 60, height: 60)
-                                    .cornerRadius(13)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 13)
-                                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                                    )
-                            } else {
-                                // Image placeholder si l'aperçu n'existe pas
-                                RoundedRectangle(cornerRadius: 13)
-                                    .fill(Color.gray.opacity(0.2))
-                                    .frame(width: 60, height: 60)
-                                    .overlay(
-                                        Image(systemName: "app.fill")
-                                            .foregroundColor(.gray)
-                                    )
+                
+                VStack(spacing: 16) {
+                    HStack(spacing: 0) {
+                        ForEach(AppIcon.allCases) { icon in
+                            VStack {
+                                if let uiImage = UIImage(named: icon.previewImageName) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 55)
+                                        .cornerRadius(12)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .stroke(settings.selectedIcon == icon ? Color.blue : Color.clear, lineWidth: 2)
+                                        )
+                                        .shadow(color: settings.selectedIcon == icon ? Color.blue.opacity(0.7) : .clear,
+                                                radius: 8)
+                                        .opacity(settings.selectedIcon == icon ? 1 : 0.6)
+                                } else {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color.gray.opacity(0.2))
+                                        .frame(height: 55)
+                                        .overlay(
+                                            Image(systemName: "app.fill")
+                                                .font(.title2)
+                                                .foregroundColor(.gray)
+                                        )
+                                }
                             }
-                            
-                            Text(icon.description)
-                                .font(.body)
-                                .foregroundColor(.primary)
-                            
-                            Spacer()
-                            
-                            if settings.selectedIcon == icon {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.blue)
-                                    .font(.title3)
-                            }
+                            .frame(maxWidth: .infinity)
                         }
-                        .padding(.vertical, 8)
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .padding(.vertical, 4)
+
+                    Picker("App Icon", selection: $settings.selectedIcon) {
+                        ForEach(AppIcon.allCases) { icon in
+                            Text(icon.description).tag(icon)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .onChange(of: settings.selectedIcon) { newIcon in
+                        settings.updateIcon(to: newIcon)
+                    }
                 }
+                .padding(.vertical, 8)
             }
         }
         .navigationTitle("Settings")
-        .listStyle(InsetGroupedListStyle())
+        .listStyle(.insetGrouped)
     }
 }
 
@@ -148,3 +142,4 @@ struct ChangeAppIconView: View {
         ChangeAppIconView()
     }
 }
+

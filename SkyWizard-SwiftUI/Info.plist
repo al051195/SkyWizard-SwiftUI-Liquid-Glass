@@ -2,38 +2,47 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>UIAppFonts</key>
-    <array>
-        <string>Montserrat-Black.ttf</string>
-        <string>Montserrat-Bold.ttf</string>
-        <string>Montserrat-Light.ttf</string>
-        <string>Montserrat-Medium.ttf</string>
-        <string>Montserrat-Regular.ttf</string>
-        <string>Montserrat-SemiBold.ttf</string>
-    </array>
-    <key>CFBundleIcons</key>
-    <dict>
-        <key>CFBundleAlternateIcons</key>
-        <dict>
-            <key>Weather Mono</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Weather Mono</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <key>Weather Colorful</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Weather Colorful</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-        </dict>
-    </dict>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>Weather Colorful</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weather Colorful</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Weather Mono</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weather Mono</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Weather Cool</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weather Cool</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Black.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Light.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+	</array>
 </dict>
 </plist>

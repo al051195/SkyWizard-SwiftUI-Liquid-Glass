@@ -19,7 +19,7 @@ struct OfflineView: View {
                     .font(.title3)
                     .foregroundStyle(.white)
                     .padding()
-                    .glassEffect(in : .rect(cornerRadius: 20))
+                    .glassEffect(in : .rect(cornerRadius: 26))
             }
         }
     }
@@ -28,7 +28,6 @@ struct OfflineView: View {
 extension OfflineView {
     @ViewBuilder
     var offlineImage: some View {
-        if #available(iOS 26.0, *) {
             Image(systemName: "antenna.radiowaves.left.and.right.slash")
                 .resizable()
                 .frame(width: 52, height: 52)
@@ -36,12 +35,6 @@ extension OfflineView {
                 .symbolEffect(.pulse, options: .speed(3).repeating)
                 .padding()
                 .glassEffect(.clear.tint(.orange).interactive())
-        } else {
-            Image(systemName: "antenna.radiowaves.left.and.right.slash")
-                .resizable()
-                .foregroundStyle(.white)
-                .frame(width: 52, height: 52)
-        }
     }
 }
 

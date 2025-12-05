@@ -15,7 +15,7 @@ struct HouseViewRepresentable: UIViewRepresentable {
     var allowRotation: Bool = true
     var onRenderFinished: (() -> Void)?
     
-    class Coordinator: NSObject, SCNSceneRendererDelegate {
+    class Coordinator: NSObject, SCNSceneRendererDelegate, UIGestureRecognizerDelegate {
         let sceneView = SCNView()
         let scene = SCNScene(named: "wizard_house.scn")!
         var houseNode: SCNNode?
@@ -59,6 +59,13 @@ struct HouseViewRepresentable: UIViewRepresentable {
             sceneView.delegate = nil
         }
         
+        // Autoriser seulement les pans majoritairement horizontaux
+        func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+            guard let pan = gestureRecognizer as? UIPanGestureRecognizer else { return true }
+            let velocity = pan.velocity(in: sceneView)
+            return abs(velocity.x) > abs(velocity.y)
+        }
+        
         @objc func pan(panGesture: UIPanGestureRecognizer) {
             let translation = panGesture.translation(in: sceneView)
             
@@ -71,7 +78,7 @@ struct HouseViewRepresentable: UIViewRepresentable {
                 initialRotation = houseNode.eulerAngles
                 
             case .changed:
-                // Calculate rotation angles based on pan translation
+                // Calculate rotation angles based on horizontal pan translation only
                 let angleY = Float(translation.x) * .pi / 180
                 
                 // Apply rotation to the node
@@ -126,6 +133,7 @@ struct HouseViewRepresentable: UIViewRepresentable {
         
         if allowRotation {
             let panGesture = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.pan))
+            panGesture.delegate = context.coordinator // important pour filtrer vertical vs horizontal
             sceneView.addGestureRecognizer(panGesture)
         }
         
