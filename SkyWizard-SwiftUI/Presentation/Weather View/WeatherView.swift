@@ -109,17 +109,13 @@ extension WeatherView {
             HStack(alignment: .top) {
                 LiquidGlassText("\(weatherDataStore.currentTemperature)",
                                 glass: .clear.interactive().tint(.white.opacity(0.1)),
-                    size: 76,
+                    size: 78,
                     weight: .black,
                                 design: .default
                 )
-                //Text("\(weatherDataStore.currentTemperature)")
-                //    .font(.getFont(type: .regular, size: 76))
-                //Text("0")
-                //    .font(.getFont(type: .regular, size: 26))
                 LiquidGlassText("0",
                                 glass: .clear.interactive().tint(.white.opacity(0.1)),
-                    size: 26,
+                    size: 28,
                     weight: .black,
                                 design: .default
                 )
@@ -129,12 +125,10 @@ extension WeatherView {
             HStack(spacing: 8) {
                 LiquidGlassText("Feels like",
                                 glass: .clear.interactive().tint(.white.opacity(0.1)),
-                    size: 18,
+                    size: 20,
                     weight: .black,
                                 design: .rounded
                 )
-               // Text("Feels like")
-               //     .font(.getFont(type: .medium, size: 18))
                 SubTemperatureView(temperature: $weatherDataStore.realFeel)
                 Spacer()
             }
@@ -146,29 +140,28 @@ extension WeatherView {
     }
     
     private var currentCityView: some View {
-        HStack {
-            LiquidGlassText(weatherDataStore.currentCity,
-                            glass: .clear.interactive().tint(.white.opacity(0.1)),
-                size: 26,
-                weight: .black,
-                            design: .rounded
-            )
-            //Text(weatherDataStore.currentCity)
-            //    .font(.getFont(type: .medium, size: 26))
-            //    .padding(.trailing, 5)
-            Button {
-                #if DEBUG
-                weatherDataStore.changeWeatherType()
-                #endif
-            } label: {
-                Image(systemName: "location.circle")
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                    .glassEffect(.clear.interactive().tint(.clear))
+        GlassEffectContainer(spacing: 10.0) {
+            HStack {
+                Text(weatherDataStore.currentCity)
+                    .font(.getFont(type: .bold, size: 22))
+                    .padding(10)
+                    .glassEffect(.clear.interactive())
+                Button {
+#if DEBUG
+                    weatherDataStore.changeWeatherType()
+#endif
+                } label: {
+                    Image(systemName: "location.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 22, height: 22)
+                        .frame(width: 48, height: 48)
+                        .glassEffect(.clear.interactive().tint(.clear))
+                }
+                
             }
-
+            .foregroundStyle(subTitleColor)
         }
-        .foregroundStyle(subTitleColor)
     }
     
     private var weatherLoadingView: some View {
@@ -203,9 +196,8 @@ extension WeatherView {
                 DailyWeatherView(weatherData: weatherDataStore.dailyWeatherData)
                     .padding(.horizontal, 25)
                 
-                // Boutons About et Settings côte à côte
                 HStack(spacing: 15) {
-                    // Bouton About
+                    GlassEffectContainer(spacing: 20.0) {
                     Button {
                         navigation(route: .about)
                     } label: {
@@ -217,7 +209,6 @@ extension WeatherView {
                             .glassEffect(.clear.tint(.white).interactive(), in: .rect(cornerRadius: 30))
                     }
                     
-                    // Bouton Settings (engrenage)
                     Button {
                         navigation(route: .settings)
                     } label: {
@@ -230,6 +221,7 @@ extension WeatherView {
                             .glassEffect(.clear.tint(.white).interactive(), in: .circle)
                     }
                 }
+            }
                 .padding(.horizontal, 25)
             }
         }

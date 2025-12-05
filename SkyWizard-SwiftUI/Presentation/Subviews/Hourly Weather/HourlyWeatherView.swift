@@ -13,10 +13,6 @@ struct HourlyWeatherView: View {
     
     var body: some View {
         VStack {
-           // RoundedRectangle(cornerRadius: 5)
-           //     .frame(width: 56, height: 4.5)
-           //     .padding(.top, 4)
-           //     .drawingGroup()
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
                     ForEach(hourlyData) { data in
