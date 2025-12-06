@@ -24,10 +24,10 @@
 	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad6.png" height="330">
 </p>
 
-### What's new in version 2.1
+### What's new in version 2.2
 -  Freshly updated with a brand new liquid glass design
 -  New app icon designed for iOS 26
--  Alternative AppIcon
+-  Alternative AppIcons
 -  AI-powered weather summary
 -  New Wizard Message design
 
