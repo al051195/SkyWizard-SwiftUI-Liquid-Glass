@@ -1,4 +1,4 @@
-## **Based on [SkyWizard-SwiftUI by hishd](https://github.com/hishd/SkyWizard-SwiftUI)**
+### **Based on [SkyWizard-SwiftUI by hishd](https://github.com/hishd/SkyWizard-SwiftUI)**
 # Sky Wizard iOS
 
 <p>
