@@ -17,13 +17,6 @@
 	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone7.png" height="300">
 </p>
 
-<p>
-  	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad1.png" height="330">
-	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad2.png" height="330">
-	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad4.png" height="330">
-	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/ipad6.png" height="330">
-</p>
-
 ### What's new in version 2.2
 -  Freshly updated with a brand new liquid glass design
 -  New app icon designed for iOS 26
