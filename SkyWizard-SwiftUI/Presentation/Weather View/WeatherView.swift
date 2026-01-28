@@ -197,7 +197,6 @@ extension WeatherView {
                     .padding(.horizontal, 25)
                 
                 HStack(spacing: 15) {
-                    GlassEffectContainer(spacing: 20.0) {
                     Button {
                         navigation(route: .about)
                     } label: {
@@ -220,7 +219,6 @@ extension WeatherView {
                             .frame(width: 50, height: 50)
                             .glassEffect(.clear.tint(.white).interactive(), in: .circle)
                     }
-                }
             }
                 .padding(.horizontal, 25)
             }
