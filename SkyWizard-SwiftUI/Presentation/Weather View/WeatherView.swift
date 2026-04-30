@@ -142,10 +142,16 @@ extension WeatherView {
     private var currentCityView: some View {
         GlassEffectContainer(spacing: 10.0) {
             HStack {
-                Text(weatherDataStore.currentCity)
-                    .font(.getFont(type: .bold, size: 22))
-                    .padding(10)
-                    .glassEffect(.clear.interactive())
+                Button {
+                    navigation(route: .otherLocations)
+                } label: {
+                    Text(weatherDataStore.currentCity)
+                        .font(.getFont(type: .bold, size: 22))
+                        .padding(10)
+                        .frame(height: 50)
+                        .glassEffect(.clear.interactive())
+                }
+
                 Button {
 #if DEBUG
                     weatherDataStore.changeWeatherType()

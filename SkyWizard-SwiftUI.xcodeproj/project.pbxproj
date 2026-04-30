@@ -10,6 +10,8 @@
 		71E2A6A62EBA957C00A87A08 /* Weather.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6A52EBA957C00A87A08 /* Weather.icon */; };
 		71E2A6AC2EBAAFB500A87A08 /* Weather Colorful.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6AA2EBAAFB500A87A08 /* Weather Colorful.icon */; };
 		71E2A6AD2EBAAFB500A87A08 /* Weather Mono.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6AB2EBAAFB500A87A08 /* Weather Mono.icon */; };
+		98005CBC2FA3E1B700F3BC40 /* OtherLocationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98005CBB2FA3E1B700F3BC40 /* OtherLocationsStore.swift */; };
+		98005CC22FA3E1E900F3BC40 /* OtherLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98005CC02FA3E1E900F3BC40 /* OtherLocationsView.swift */; };
 		98871E1E2EDCAB340097C3C7 /* Weather Cool.icon in Resources */ = {isa = PBXBuildFile; fileRef = 98871E1D2EDCAB340097C3C7 /* Weather Cool.icon */; };
 		988EE7CA2EABD7D7009AC059 /* LiquidGlassText in Frameworks */ = {isa = PBXBuildFile; productRef = 988EE7C92EABD7D7009AC059 /* LiquidGlassText */; };
 		FD0841A32CD7202D00604BF3 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */; };
@@ -103,6 +105,8 @@
 		71E2A6A52EBA957C00A87A08 /* Weather.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Weather.icon; sourceTree = "<group>"; };
 		71E2A6AA2EBAAFB500A87A08 /* Weather Colorful.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Colorful.icon"; sourceTree = "<group>"; };
 		71E2A6AB2EBAAFB500A87A08 /* Weather Mono.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Mono.icon"; sourceTree = "<group>"; };
+		98005CBB2FA3E1B700F3BC40 /* OtherLocationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherLocationsStore.swift; sourceTree = "<group>"; };
+		98005CC02FA3E1E900F3BC40 /* OtherLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherLocationsView.swift; sourceTree = "<group>"; };
 		98871E1D2EDCAB340097C3C7 /* Weather Cool.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Cool.icon"; sourceTree = "<group>"; };
 		988EE7852EAAA47B009AC059 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		988EE7872EAAA47B009AC059 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -204,6 +208,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		98005CC12FA3E1E900F3BC40 /* Other Locations View */ = {
+			isa = PBXGroup;
+			children = (
+				98005CC02FA3E1E900F3BC40 /* OtherLocationsView.swift */,
+			);
+			path = "Other Locations View";
+			sourceTree = "<group>";
+		};
 		988EE7842EAAA47B009AC059 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +257,7 @@
 				FD8574812CD9CF51003D9D29 /* Hourly Weather */,
 				FD85747E2CD9CEC6003D9D29 /* Daily Weather */,
 				FD8574792CD9CE5D003D9D29 /* Sheet View */,
+				98005CC12FA3E1E900F3BC40 /* Other Locations View */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -456,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				FD949A732CDD614300F8CF48 /* WeatherDataStore.swift */,
+				98005CBB2FA3E1B700F3BC40 /* OtherLocationsStore.swift */,
 			);
 			path = Datastores;
 			sourceTree = "<group>";
@@ -656,6 +670,7 @@
 				FDFD8F9E2CE6807C000B3C18 /* Reachability+Dependencies.swift in Sources */,
 				FD126D182CE76A7300B3654A /* WeatherMessagePopup.swift in Sources */,
 				FDABC3A12CE844730085EC95 /* AboutAppView.swift in Sources */,
+				98005CBC2FA3E1B700F3BC40 /* OtherLocationsStore.swift in Sources */,
 				FD8574832CD9CF6A003D9D29 /* HourlyWeatherItem.swift in Sources */,
 				FD1DF3122CEF91D10031B319 /* HouseView.swift in Sources */,
 				FDF41DED2CE386F0000C4FB4 /* WeatherDataStore+Dependencies.swift in Sources */,
@@ -676,6 +691,7 @@
 				FD8574802CD9CEF9003D9D29 /* DailyWeatherItem.swift in Sources */,
 				FD32A9F42CB4484D002B8706 /* SkyWizard_SwiftUIApp.swift in Sources */,
 				FD0841B32CD732A400604BF3 /* Font+Extensions.swift in Sources */,
+				98005CC22FA3E1E900F3BC40 /* OtherLocationsView.swift in Sources */,
 				FD0841A32CD7202D00604BF3 /* Color+Extensions.swift in Sources */,
 				FD73C1B02CD89EE4004DA8A7 /* DailyWeatherView.swift in Sources */,
 				FD949A692CDCA44300F8CF48 /* GeocodingService+Dependencies.swift in Sources */,
@@ -830,7 +846,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 26H3a;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyWizard-SwiftUI/Other/Preview Content\"";
 				DEVELOPMENT_TEAM = 9Y9F764TSC;
 				ENABLE_PREVIEWS = YES;
@@ -850,7 +866,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 26.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -870,7 +886,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 26H3a;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyWizard-SwiftUI/Other/Preview Content\"";
 				DEVELOPMENT_TEAM = 9Y9F764TSC;
 				ENABLE_PREVIEWS = YES;
@@ -890,7 +906,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 26.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

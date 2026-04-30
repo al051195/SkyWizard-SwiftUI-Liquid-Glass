@@ -40,7 +40,7 @@ struct WeatherMessagePopup: View {
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .glassEffect(.clear.interactive().tint(.white.opacity(0.55)), in: .rect(cornerRadius: 40))
+                .glassEffect(.clear.interactive().tint(.white.opacity(0.4)), in: .rect(cornerRadius: 40))
                 .shadow(radius: 24)
                 .padding(.bottom, 40)
                 .padding(.horizontal, 28)

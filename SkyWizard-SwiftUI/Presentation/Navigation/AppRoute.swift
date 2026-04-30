@@ -10,6 +10,7 @@ import SwiftUI
 
 enum AppRoute: Hashable {
     case about
+    case otherLocations
     case settings
 }
 
@@ -19,6 +20,8 @@ extension AppRoute {
         switch self {
         case .about:
             AboutAppView()
+        case .otherLocations:
+            OtherLocationsView()
         case .settings:
             ChangeAppIconView()
         }

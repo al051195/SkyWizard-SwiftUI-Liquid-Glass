@@ -13,6 +13,8 @@ struct AISummaryView: View {
     let today: DailyWeatherData
     let yesterday: DailyWeatherData?
     
+    @State private var showSheet = false
+    
     private func generateSummary() -> String {
         let condition = today.weatherType.conditionText()
         let minTemp = today.tempLow
@@ -38,15 +40,25 @@ struct AISummaryView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("AI Summary")
-                .font(.getFont(type: .bold, size: 20))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [.orange, .pink, .purple],
-                        startPoint: .leading,
-                        endPoint: .trailing
+            HStack(alignment: .firstTextBaseline) {
+                Text("AI Summary")
+                    .font(.getFont(type: .bold, size: 20))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.orange, .pink, .purple],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
                     )
-                )
+
+                Spacer(minLength: 8)
+
+                Text("View more")
+                    .font(.getFont(type: .light, size: 14))
+                    .foregroundStyle(.primary)
+                    .padding(10)
+                    .glassEffect()
+            }
 
             Text(generateSummary())
                 .font(.getFont(type: .semibold, size: 14))
@@ -63,6 +75,38 @@ struct AISummaryView: View {
         .frame(maxWidth: .infinity)
         .glassEffect(.clear.tint(.white).interactive(), in: .rect(cornerRadius: 30))
         .padding(.horizontal, 25)
+        .onTapGesture {
+            showSheet = true
+        }
+        .sheet(isPresented: $showSheet) {
+            ExpandedSummarySheet(summary: generateSummary())
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+        }
     }
 }
 
+struct ExpandedSummarySheet: View {
+    let summary: String
+    
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("AI Summary")
+                    .font(.getFont(type: .bold, size: 22))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.orange, .pink, .purple],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+
+                Text(summary)
+                    .font(.getFont(type: .semibold, size: 16))
+                    .lineSpacing(5)
+            }
+            .padding(20)
+        }
+    }
+}
