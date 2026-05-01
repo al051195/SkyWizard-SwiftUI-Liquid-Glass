@@ -162,7 +162,7 @@ extension WeatherView {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 22, height: 22)
                         .frame(width: 48, height: 48)
-                        .glassEffect(.clear.interactive().tint(.clear))
+                        .glassEffect(.clear.interactive())
                 }
                 
             }
@@ -211,7 +211,7 @@ extension WeatherView {
                             .frame(maxWidth: .infinity)
                             .frame(height: 50)
                             .foregroundStyle(.dayTitle)
-                            .glassEffect(.clear.tint(.white).interactive(), in: .rect(cornerRadius: 30))
+                            .glassEffect(.clear.tint(.white.opacity(0.8)).interactive(), in: .rect(cornerRadius: 30))
                     }
                     
                     Button {
@@ -223,7 +223,7 @@ extension WeatherView {
                             .frame(width: 24, height: 24)
                             .foregroundColor(.dayTitle)
                             .frame(width: 50, height: 50)
-                            .glassEffect(.clear.tint(.white).interactive(), in: .circle)
+                            .glassEffect(.clear.tint(.white.opacity(0.8)).interactive(), in: .circle)
                     }
             }
                 .padding(.horizontal, 25)

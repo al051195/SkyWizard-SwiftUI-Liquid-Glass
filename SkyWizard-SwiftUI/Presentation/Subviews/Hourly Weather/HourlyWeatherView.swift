@@ -25,7 +25,7 @@ struct HourlyWeatherView: View {
         }
         .frame(maxWidth: .infinity)
         .frame(height: 150)
-        .glassEffect(.clear .interactive() .tint(.white), in: .rect(cornerRadius: 30))
+        .glassEffect(.clear .interactive() .tint(.white.opacity(0.8)), in: .rect(cornerRadius: 30))
     }
 }
 

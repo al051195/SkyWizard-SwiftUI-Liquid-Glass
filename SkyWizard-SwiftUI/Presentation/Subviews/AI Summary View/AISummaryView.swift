@@ -56,7 +56,7 @@ struct AISummaryView: View {
                 Text("View more")
                     .font(.getFont(type: .light, size: 14))
                     .foregroundStyle(.primary)
-                    .padding(10)
+                    .padding(8)
                     .glassEffect()
             }
 
@@ -73,7 +73,8 @@ struct AISummaryView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity)
-        .glassEffect(.clear.tint(.white).interactive(), in: .rect(cornerRadius: 30))
+        //.glassEffect(.clear.tint(.white).interactive(), in: .rect(cornerRadius: 30))
+        .glassEffect(.clear.tint(.white.opacity(0.8)).interactive(), in: .rect(cornerRadius: 30))
         .padding(.horizontal, 25)
         .onTapGesture {
             showSheet = true
