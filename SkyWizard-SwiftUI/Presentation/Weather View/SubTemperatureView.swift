@@ -31,12 +31,6 @@ struct SubTemperatureView: View {
                 weight: .black,
                             design: .rounded
             )
-            //Text("\(temperature)")
-            //    .font(.getFont(type: .medium, size: 18))
-            //Text("0")
-            //    .font(.getFont(type: .medium, size: 10))
-            //Text("C")
-            //    .font(.getFont(type: .medium, size: 14))
                 .padding(.top, 3)
         }
     }

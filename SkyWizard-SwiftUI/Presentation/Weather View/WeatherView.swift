@@ -53,7 +53,6 @@ struct WeatherView: View {
                 isGreetingPresented = true
             }
         }
-        .errorAlert(error: $weatherDataStore.error)
         .navigationDestination(for: AppRoute.self) { route in
             route.content
         }
@@ -148,7 +147,7 @@ extension WeatherView {
                     Text(weatherDataStore.currentCity)
                         .font(.getFont(type: .bold, size: 22))
                         .padding(10)
-                        .frame(height: 50)
+                        .frame(height: 48)
                         .glassEffect(.clear.interactive())
                 }
 
@@ -193,8 +192,13 @@ extension WeatherView {
         SheetView(isBackgroundVisible: false, isPresented: $isPresented) {
             VStack {
                 if let today = weatherDataStore.dailyWeatherData.first {
-                    let yesterday = weatherDataStore.dailyWeatherData.dropFirst().first
-                    AISummaryView(today: today, yesterday: yesterday)
+                    let comparisonDay = weatherDataStore.dailyWeatherData.dropFirst().first
+                    TodayBriefView(
+                        today: today,
+                        comparisonDay: comparisonDay,
+                        realFeel: weatherDataStore.realFeel,
+                        hourlyData: weatherDataStore.hourlyWeatherData
+                    )
                 }
                 
                 HourlyWeatherView(hourlyData: weatherDataStore.hourlyWeatherData)
