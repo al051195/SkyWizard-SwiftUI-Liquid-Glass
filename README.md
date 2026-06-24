@@ -1,35 +1,36 @@
-
+### **Based on [SkyWizard-SwiftUI by hishd](https://github.com/hishd/SkyWizard-SwiftUI)**
 # Sky Wizard iOS
 
 <p>
-<img src="https://img.shields.io/badge/Swift-5.9-violet">
-<img src="https://img.shields.io/badge/iOS-16.6-green">
-<img src="https://img.shields.io/badge/XCode-16.0-blue">
+<img src="https://img.shields.io/badge/Swift-6.2-violet">
+<img src="https://img.shields.io/badge/iOS-26-green">
+<img src="https://img.shields.io/badge/XCode-26.0-blue">
 </p>
 
 <p>
-  	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone1.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone2.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone3.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone4.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone5.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone6.jpg" height="300">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/iphone7.jpg" height="300">
+  	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone1.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone2.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone3.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone4.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone5.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone6.png" height="300">
+	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone7.png" height="300">
 </p>
 
-<p>
-  	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad1.jpg" height="330">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad2.jpg" height="330">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad4.jpg" height="330">
-	<img src="https://github.com/hishd/SkyWizard-SwiftUI/blob/master/banners/ipad6.jpg" height="330">
-</p>
+### What's new in version 2.2
+-  Freshly updated with a brand new liquid glass design
+-  New app icon designed for iOS 26
+-  Alternative AppIcons
+-  AI-powered weather summary
+-  New Wizard Message design
+
 
 ### Overview
 
 Sky Wizard is a weather information application, developed for iOS devices. The app is open source and developed using **[open metro](https://open-meteo.com/)** api for weather updated and **[photon](https://photon.komoot.io)** for reverse geocoding.
 Both the integrated api services are free for non-commercial use and required an api key based on the number of api calls.
 
-**Note:** The application is mainly designed for iOS devices and therefore the iPad experience will be less optimized. The iPad experience will be improved in the future updates. Stay tuned 😉
+**Note:** The application is mainly designed for iOS and iPadOS devices and therefore the Apple Silicon Mac experience will be less optimized.�
 
 ### Project Structure
 
@@ -78,7 +79,6 @@ The 3D object was downloaded from the sketchfab platform (credits go to the owne
 ### API's used
 
  -  **SceneKit** is used to render the house model.
- -  **SpriteKit** is used to render snow and rainy weather particle effects.
  - **Lottie** is used to render the animations.
  - **DependencyInjector** is used to manage application dependencies using property wrappers.
  - **NetworkingService** is used to handle http network calls.
@@ -87,11 +87,5 @@ The 3D object was downloaded from the sketchfab platform (credits go to the owne
 
 - More 3D objects
 - Getting weather updates on different cities (currently set to users location only)
+- Widgets
 
-### Visual Designs
-
-These designs contains the static house image which is used on low performing devices to enhance application performance.
-
-<p>
-  <img src="https://github.com/hishd/SkyWizard/blob/master/resources/VisualDesigns/mockups.gif" height="300">
-</p>
