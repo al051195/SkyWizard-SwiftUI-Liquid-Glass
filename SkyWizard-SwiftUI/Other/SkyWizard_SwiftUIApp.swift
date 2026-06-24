@@ -16,11 +16,13 @@ struct SkyWizard_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $routes) {
-                WeatherView()
-                    .environmentObject(weatherDataStore)
-                    .environment(\.navigation, .init(callback: { route in
-                        self.routes.append(route)
-                    }))
+                ReleaseNotesPresenter {
+                    WeatherView()
+                        .environmentObject(weatherDataStore)
+                        .environment(\.navigation, .init(callback: { route in
+                            self.routes.append(route)
+                        }))
+                }
             }
         }
     }

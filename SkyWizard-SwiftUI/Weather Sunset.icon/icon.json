@@ -1,0 +1,87 @@
+{
+  "features" : [
+    "refractivity",
+    "specular-location"
+  ],
+  "fill-specializations" : [
+    {
+      "value" : {
+        "automatic-gradient" : "display-p3:0.97510,0.59277,0.52930,1.00000"
+      }
+    },
+    {
+      "appearance" : "dark",
+      "value" : {
+        "automatic-gradient" : "display-p3:0.97510,0.59277,0.52930,1.00000"
+      }
+    }
+  ],
+  "groups" : [
+    {
+      "blur-material" : 0,
+      "layers" : [
+        {
+          "image-name" : "forecast_ic_rainy@3x.png",
+          "name" : "forecast_ic_rainy@3x",
+          "position" : {
+            "scale" : 0.75,
+            "translation-in-points" : [
+              203.5859375,
+              151.7750000000001
+            ]
+          }
+        }
+      ],
+      "lighting" : "individual",
+      "refractivity" : {
+        "depth" : 0.28,
+        "enabled" : true,
+        "strength" : 0.3
+      },
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.84
+      },
+      "specular" : "inside",
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.9
+      }
+    },
+    {
+      "layers" : [
+        {
+          "image-name" : "forecast_ic_sunny@3x.png",
+          "name" : "forecast_ic_sunny@3x",
+          "position" : {
+            "scale" : 1.3,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "refractivity" : {
+        "depth" : 0,
+        "enabled" : false,
+        "strength" : 0.5
+      },
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.72
+      },
+      "specular" : "inside",
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.85
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

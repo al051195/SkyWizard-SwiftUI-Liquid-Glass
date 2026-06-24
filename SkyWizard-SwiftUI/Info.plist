@@ -2,6 +2,51 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<<<<<<< Updated upstream
+=======
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>Weather Colorful</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weather Colorful</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Weather Cool</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weather Cool</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Weather Mono</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weather Mono</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Weather Sunset</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weather Sunset</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+>>>>>>> Stashed changes
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.ttf</string>

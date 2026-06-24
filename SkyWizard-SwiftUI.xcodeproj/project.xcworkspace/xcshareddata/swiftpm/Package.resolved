@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "originHash" : "7293155e09ea23cea80aedc50ac03068b34dbf22e0f48cda3fc94608d68aed7b",
+=======
+  "originHash" : "5b181a2048709e817f28ea2277348de2e5dbf10728586787aff9f2afe18fa0f6",
+>>>>>>> Stashed changes
   "pins" : [
     {
       "identity" : "dependencyinjector",
@@ -35,6 +39,15 @@
       "state" : {
         "revision" : "cb6f22ef5e060547c9aa9d46379ffd5ff969583c",
         "version" : "1.0.7"
+      }
+    },
+    {
+      "identity" : "notelet",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mykolaharmash/notelet",
+      "state" : {
+        "revision" : "f01e68239a3e711895462e202b7cf1eac6f6bec3",
+        "version" : "1.1.0"
       }
     }
   ],

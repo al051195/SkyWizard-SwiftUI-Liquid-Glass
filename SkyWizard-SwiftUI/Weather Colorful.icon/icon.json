@@ -1,0 +1,55 @@
+{
+  "features" : [
+    "refractivity",
+    "specular-location"
+  ],
+  "fill" : {
+    "automatic-gradient" : "extended-srgb:0.00000,0.47843,1.00000,1.00000"
+  },
+  "groups" : [
+    {
+      "blur-material" : 0.12,
+      "hidden" : false,
+      "layers" : [
+        {
+          "image-name" : "weather.png",
+          "name" : "weather",
+          "position" : {
+            "scale" : 1.5,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "position" : {
+        "scale" : 1,
+        "translation-in-points" : [
+          0,
+          -25
+        ]
+      },
+      "refractivity" : {
+        "depth" : 0.6159375,
+        "enabled" : true,
+        "strength" : 0.89546875
+      },
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.64
+      },
+      "specular" : "inside",
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.88
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

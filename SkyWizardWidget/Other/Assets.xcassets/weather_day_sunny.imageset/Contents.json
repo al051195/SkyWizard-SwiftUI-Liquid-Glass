@@ -1,7 +1,11 @@
 {
   "images" : [
     {
+<<<<<<< Updated upstream:SkyWizardWidget/Other/Assets.xcassets/weather_day_sunny.imageset/Contents.json
       "filename" : "weather_day_sunny.png",
+=======
+      "filename" : "Weather-iOS-Default-1024@1x.png",
+>>>>>>> Stashed changes:SkyWizard-SwiftUI/Other/Assets.xcassets/Weather-Preview.imageset/Contents.json
       "idiom" : "universal",
       "scale" : "1x"
     },
