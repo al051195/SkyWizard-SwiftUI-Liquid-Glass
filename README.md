@@ -1,5 +1,6 @@
 ### **Based on [SkyWizard-SwiftUI by hishd](https://github.com/hishd/SkyWizard-SwiftUI)**
 # Sky Wizard iOS
+> Development paused because of the holidays, will start working again in the beginning of September <
 
 <p>
 <img src="https://img.shields.io/badge/Swift-6.2-violet">
