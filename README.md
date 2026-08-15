@@ -17,14 +17,6 @@
 	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone7.png" height="300">
 </p>
 
-### What's new in version 2.2
--  Freshly updated with a brand new liquid glass design
--  New app icon designed for iOS 26
--  Alternative AppIcons
--  AI-powered weather summary
--  New Wizard Message design
-
-
 ### Overview
 
 Sky Wizard is a weather information application, developed for iOS devices. The app is open source and developed using **[open metro](https://open-meteo.com/)** api for weather updated and **[photon](https://photon.komoot.io)** for reverse geocoding.
