@@ -92,7 +92,7 @@ private enum SkyWizardReleaseNotes {
 
     static let firstLaunchNotes: [NoteletVersionNotes] = [
         .init(
-            version: "27.0-Nightly-4",
+            version: "27.0",
             items: [
                 welcomeHighlights,
                 forecastHighlights,
