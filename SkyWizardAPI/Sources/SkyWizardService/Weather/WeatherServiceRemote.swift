@@ -46,11 +46,12 @@ public final class WeatherServiceRemote: WeatherService {
         }
     }
     
-    public func getWeather(for daily: WeatherData.DailyWeatherData) throws -> [DailyWeatherData] {
+    public func getWeather(for daily: WeatherData.DailyWeatherData, timeZone: TimeZone) throws -> [DailyWeatherData] {
         var data: [DailyWeatherData] = .init()
         let dateFormatter: DateFormatter = .init()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = timeZone
         
         guard !daily.time.isEmpty else {
             throw WeatherServiceError.invalidData(message: "Empty time data found.")
@@ -73,30 +74,33 @@ public final class WeatherServiceRemote: WeatherService {
                 throw WeatherServiceError.invalidData(message: "Invalid date format found.")
             }
             
-            let dateText = """
-            \(date.formatted(.dateTime.day())) \
-            \(date.formatted(.dateTime.month(.abbreviated))), \
-            \(date.formatted(.dateTime.weekday(.wide)))
-            """
+            let dateText = dayDescription(for: date, timeZone: timeZone)
+
+            let sunrise = index < daily.sunrise.count ? isoDateFormatter(timeZone: timeZone).date(from: daily.sunrise[index]) : nil
+            let sunset = index < daily.sunset.count ? isoDateFormatter(timeZone: timeZone).date(from: daily.sunset[index]) : nil
 
             data.append(.init(
                 dateString: dateText,
                 tempHigh: Int(daily.temperature_2m_max[index]),
                 tempLow: Int(daily.temperature_2m_min[index]),
-                weatherType: getWeatherType(for: daily.weather_code[index])
+                weatherType: getWeatherType(for: daily.weather_code[index]),
+                sunrise: sunrise,
+                sunset: sunset,
+                timeZone: timeZone
             ))
         }
         
         return Array(data.prefix(5))
     }
     
-    public func getWeather(for hourly: WeatherData.HourlyWeatherData) throws -> [HourlyWeatherData] {
+    public func getWeather(for hourly: WeatherData.HourlyWeatherData, timeZone: TimeZone) throws -> [HourlyWeatherData] {
         var data: [HourlyWeatherData] = .init()
-        let currentHour: Int = Calendar.current.component(.hour, from: .now)
-        let currentDay: Int = Calendar.current.component(.day, from: .now)
-        let dateFormatter: DateFormatter = .init()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timeZone
+        let currentDate: Date = .now
+        let currentHour: Int = calendar.component(.hour, from: currentDate)
+        let currentDay: Int = calendar.component(.day, from: currentDate)
+        let dateFormatter = isoDateFormatter(timeZone: timeZone)
         
         guard !hourly.time.isEmpty else {
             throw WeatherServiceError.invalidData(message: "Empty time data found.")
@@ -118,17 +122,14 @@ public final class WeatherServiceRemote: WeatherService {
                 throw WeatherServiceError.invalidData(message: "Invalid date format found.")
             }
             
-            let hour = Calendar.current.component(.hour, from: date)
-            let day = Calendar.current.component(.day, from: date)
+            let hour = calendar.component(.hour, from: date)
+            let day = calendar.component(.day, from: date)
             
             if day == currentDay && hour <= currentHour {
                 continue
             }
             
-            let timeText = """
-            \(date.formatted(.dateTime.hour(.defaultDigits(amPM: .omitted)))) \
-            \(hour >= 12 ? "PM" : "AM")
-            """
+            let timeText = hourDescription(for: date, hour: hour, timeZone: timeZone)
             
             data.append(
                 .init(
@@ -144,6 +145,34 @@ public final class WeatherServiceRemote: WeatherService {
 }
 
 extension WeatherServiceRemote {
+    private func isoDateFormatter(timeZone: TimeZone) -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
+        formatter.timeZone = timeZone
+        return formatter
+    }
+
+    private func dayDescription(for date: Date, timeZone: TimeZone) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.timeZone = timeZone
+        formatter.dateFormat = "d MMM, EEEE"
+        return formatter.string(from: date)
+    }
+
+    private func hourDescription(for date: Date, hour: Int, timeZone: TimeZone) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.timeZone = timeZone
+        // "h" is a plain 12-hour digit (1…12). The previous format specifier
+        // "j" is the locale-dependent stand-alone day period: on 24-hour
+        // locales like French it yields no numeric hour at all, so the sheet
+        // only rendered "AM"/"PM" with nothing beside it.
+        formatter.dateFormat = "h"
+        return "\(formatter.string(from: date)) \(hour >= 12 ? "PM" : "AM")"
+    }
+
     private func getWeatherType(for code: Int) -> DailyWeatherType {
         return switch code {
         case let code where (0...1).contains(code):

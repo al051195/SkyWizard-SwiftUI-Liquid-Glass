@@ -9,6 +9,9 @@ import Testing
 import DependencyInjector
 import NetworkingService
 import CoreLocation
+import SkyWizardService
+import SkyWizardModel
+import SkyWizardEnum
 @testable import SkyWizard_SwiftUI
 
 struct WeatherServiceTests {
@@ -47,7 +50,8 @@ struct WeatherServiceTests {
         let value = try await task.value
         
         let hourly = value.hourly
-        let hourlyWeather: [HourlyWeatherData] = try sut.getWeather(for: hourly)
+        let timeZone = value.utcOffsetSeconds.flatMap { TimeZone(secondsFromGMT: $0) } ?? .current
+        let hourlyWeather: [HourlyWeatherData] = try sut.getWeather(for: hourly, timeZone: timeZone)
         print(hourlyWeather)
         #expect(!hourlyWeather.isEmpty)
     }
@@ -58,8 +62,13 @@ struct WeatherServiceTests {
         let value = try await task.value
         
         let daily = value.daily
-        let dailyWeather: [DailyWeatherData] = try sut.getWeather(for: daily)
+        let timeZone = value.utcOffsetSeconds.flatMap { TimeZone(secondsFromGMT: $0) } ?? .current
+        let dailyWeather: [DailyWeatherData] = try sut.getWeather(for: daily, timeZone: timeZone)
         print(dailyWeather)
         #expect(!dailyWeather.isEmpty)
+        #expect(!daily.sunrise.isEmpty)
+        #expect(!daily.sunset.isEmpty)
+        #expect(dailyWeather.first?.sunrise != nil)
+        #expect(dailyWeather.first?.sunset != nil)
     }
 }

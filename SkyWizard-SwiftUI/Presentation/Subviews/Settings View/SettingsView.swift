@@ -1,17 +1,18 @@
-//
-//  SettingsView.swift
-//  SkyWizard-SwiftUI
-//
-//  Created by Antoine on 04/11/2025.
-//
+// SettingsView.swift
+// SkyWizard-SwiftUI
+
+// Created by Antoine on 04/11/2025.
 
 import SwiftUI
 
+import Foundation
+
+
 enum AppIcon: String, CaseIterable, Identifiable {
     case `default` = "AppIcon"
-    case alternative1 = "Weather Mono"
     case alternative2 = "Weather Colorful"
     case alternative3 = "Weather Cool"
+    case alternative4 = "Weather Sunset"
     
     var id: String { rawValue }
 
@@ -27,18 +28,18 @@ enum AppIcon: String, CaseIterable, Identifiable {
     var description: String {
         switch self {
         case .default: return "Default"
-        case .alternative1: return "Mono"
         case .alternative2: return "Colored"
         case .alternative3: return "Cool"
+        case .alternative4: return "Sunset"
         }
     }
 
     var previewImageName: String {
         switch self {
         case .default: return "Weather-Preview"
-        case .alternative1: return "Weather Mono-Preview"
         case .alternative2: return "Weather Colorful-Preview"
         case .alternative3: return "Weather Cool-Preview"
+        case .alternative4: return "Weather Sunset-Preview"
         }
     }
 }
@@ -60,7 +61,7 @@ final class AppIconSettings: ObservableObject {
             print("The device does not support changing icons")
             return
         }
-        
+
         guard UIApplication.shared.alternateIconName != icon.iconName else {
             print("This icon is already selected")
             return
@@ -81,6 +82,9 @@ final class AppIconSettings: ObservableObject {
 
 struct ChangeAppIconView: View {
     @StateObject private var settings = AppIconSettings()
+    @Environment(\.settingsStore) private var settingsStore: SettingsStore
+    @State private var useCelsius: Bool = SettingsStore.dependency.useCelsius
+    @State private var iconRowWidth: CGFloat = 0
 
     var body: some View {
         List {
@@ -94,10 +98,10 @@ struct ChangeAppIconView: View {
                                     Image(uiImage: uiImage)
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(height: 55)
+                                        .frame(height: appIconPreviewHeight)
                                         .cornerRadius(12)
                                         .overlay(
-                                            RoundedRectangle(cornerRadius: 12)
+                                            RoundedRectangle(cornerRadius: 14.5)
                                                 .stroke(settings.selectedIcon == icon ? Color.blue : Color.clear, lineWidth: 2)
                                         )
                                         .shadow(color: settings.selectedIcon == icon ? Color.blue.opacity(0.7) : .clear,
@@ -106,7 +110,7 @@ struct ChangeAppIconView: View {
                                 } else {
                                     RoundedRectangle(cornerRadius: 12)
                                         .fill(Color.gray.opacity(0.2))
-                                        .frame(height: 55)
+                                        .frame(height: appIconPreviewHeight)
                                         .overlay(
                                             Image(systemName: "app.fill")
                                                 .font(.title2)
@@ -118,6 +122,11 @@ struct ChangeAppIconView: View {
                         }
                     }
                     .padding(.vertical, 4)
+                    .onGeometryChange(for: CGFloat.self) { proxy in
+                        proxy.size.width
+                    } action: { newWidth in
+                        iconRowWidth = newWidth
+                    }
 
                     Picker("App Icon", selection: $settings.selectedIcon) {
                         ForEach(AppIcon.allCases) { icon in
@@ -131,9 +140,31 @@ struct ChangeAppIconView: View {
                 }
                 .padding(.vertical, 8)
             }
+
+            Section(header: Text("Temperature Units")) {
+                Picker("Units", selection: $useCelsius) {
+                    Text("°C").tag(true)
+                    Text("°F").tag(false)
+                }
+                .pickerStyle(.segmented)
+                .onChange(of: useCelsius) { newValue in
+                    settingsStore.useCelsius = newValue
+                    UserDefaults.standard.set(newValue, forKey: "temperatureUseCelsius")
+                }
+            }
         }
         .navigationTitle("Settings")
         .listStyle(.insetGrouped)
+    }
+}
+
+extension ChangeAppIconView {
+    /// App-icon previews scale with the row on wide containers — the iPhone
+    /// Duo inner display and the iPad — so the four cells fill their quarters
+    /// instead of floating with dead space around them. Clamped at 55, the
+    /// value on every standard iPhone, so phones render exactly as before.
+    var appIconPreviewHeight: CGFloat {
+        min(96, max(55, iconRowWidth / 12))
     }
 }
 
@@ -142,4 +173,3 @@ struct ChangeAppIconView: View {
         ChangeAppIconView()
     }
 }
-

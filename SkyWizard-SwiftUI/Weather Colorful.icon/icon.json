@@ -1,10 +1,14 @@
 {
+  "features" : [
+    "refractivity",
+    "specular-location"
+  ],
   "fill" : {
     "automatic-gradient" : "extended-srgb:0.00000,0.47843,1.00000,1.00000"
   },
   "groups" : [
     {
-      "blur-material" : 0.5,
+      "blur-material" : 0.12,
       "hidden" : false,
       "layers" : [
         {
@@ -26,13 +30,19 @@
           -25
         ]
       },
+      "refractivity" : {
+        "depth" : 0.6159375,
+        "enabled" : true,
+        "strength" : 0.89546875
+      },
       "shadow" : {
         "kind" : "layer-color",
-        "opacity" : 0.6
+        "opacity" : 0.64
       },
+      "specular" : "inside",
       "translucency" : {
         "enabled" : true,
-        "value" : 0.75
+        "value" : 0.88
       }
     }
   ],

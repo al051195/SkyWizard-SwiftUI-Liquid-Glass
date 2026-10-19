@@ -13,6 +13,42 @@ public struct WeatherData: Sendable, Decodable {
     public let current: CurrentWeatherData
     public let hourly: HourlyWeatherData
     public let daily: DailyWeatherData
+    public let utcOffsetSeconds: Int?
+
+    public init(
+        latitude: Double,
+        longitude: Double,
+        current: CurrentWeatherData,
+        hourly: HourlyWeatherData,
+        daily: DailyWeatherData,
+        utcOffsetSeconds: Int? = nil
+    ) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.current = current
+        self.hourly = hourly
+        self.daily = daily
+        self.utcOffsetSeconds = utcOffsetSeconds
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.latitude = try container.decode(Double.self, forKey: .latitude)
+        self.longitude = try container.decode(Double.self, forKey: .longitude)
+        self.current = try container.decode(CurrentWeatherData.self, forKey: .current)
+        self.hourly = try container.decode(HourlyWeatherData.self, forKey: .hourly)
+        self.daily = try container.decode(DailyWeatherData.self, forKey: .daily)
+        self.utcOffsetSeconds = try container.decodeIfPresent(Int.self, forKey: .utcOffsetSeconds)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
+        case current
+        case hourly
+        case daily
+        case utcOffsetSeconds = "utc_offset_seconds"
+    }
 }
 
 extension WeatherData {
@@ -30,6 +66,8 @@ extension WeatherData {
         public let temperature_2m_max: [Double]
         public let temperature_2m_min: [Double]
         public let weather_code: [Int]
+        public let sunrise: [String]
+        public let sunset: [String]
     }
 }
 
@@ -57,7 +95,9 @@ extension WeatherData {
             time: (0...5).map { "\($0):00" },
             temperature_2m_max: (0...5).map { Double($0) },
             temperature_2m_min: (0...5).map { Double($0) },
-            weather_code: (0...5).map { $0 }
+            weather_code: (0...5).map { $0 },
+            sunrise: (0...5).map { "2024-10-11T06:\($0)" },
+            sunset: (0...5).map { "2024-10-11T18:\($0)" }
         )
         
         let currentSample: CurrentWeatherData = .init(

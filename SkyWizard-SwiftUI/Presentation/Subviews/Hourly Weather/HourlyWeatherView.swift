@@ -25,7 +25,7 @@ struct HourlyWeatherView: View {
         }
         .frame(maxWidth: .infinity)
         .frame(height: 150)
-        .glassEffect(.clear .interactive() .tint(.white.opacity(0.8)), in: .rect(cornerRadius: 30))
+        .glassEffect(.regular, in: .rect(cornerRadius: 33))
     }
 }
 
@@ -37,6 +37,7 @@ struct HourlyWeatherView: View {
     }
     .sheet(isPresented: .constant(true)) {
         HourlyWeatherView(hourlyData: [.sample, .sample, .sample, .sample, .sample, .sample])
+        .environmentObject(SettingsStore.dependency)
         .presentationDetents([.fraction(0.4), .fraction(0.6)])
         .presentationDragIndicator(.hidden)
         .presentationBackground(.clear)

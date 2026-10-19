@@ -1,9 +1,5 @@
-//
-//  WeatherDataStore+Dependencies.swift
-//  SkyWizard-SwiftUI
-//
-//  Created by Hishara Dilshan on 12/11/2024.
-//
+// WeatherDataStore+Dependencies.swift
+// SkyWizard-SwiftUI
 
 import Foundation
 import DependencyInjector
@@ -14,11 +10,14 @@ fileprivate final class WeatherDataStoreInjectableDependency: InjectableDependen
     @Injectable(\.weatherServiceRemote) private static var weatherService: WeatherService
     @Injectable(\.geoCodingServiceRemote) private static var geocodingService: GeocodingService
     @Injectable(\.networkReachabilityService) private static var reachabilityService: ReachabilityService
+    @Injectable(\.settingsStore) private static var settingsStore: SettingsStore
+    
     static var dependency: WeatherDataStore = .init(
         weatherService: weatherService,
         geocodingService: geocodingService,
         locationService: locationService,
-        reachabilityService: reachabilityService
+        reachabilityService: reachabilityService,
+        settingsStore: settingsStore
     )
 }
 
@@ -28,11 +27,14 @@ fileprivate final class WeatherDataStoreMockInjectableDependency: InjectableDepe
     @Injectable(\.weatherServiceMock) private static var weatherService: WeatherService
     @Injectable(\.geoCodingServiceMock) private static var geocodingService: GeocodingService
     @Injectable(\.reachabilityServiceMock) private static var reachabilityService: ReachabilityService
+    @Injectable(\.settingsStore) private static var settingsStore: SettingsStore
+    
     static var dependency: WeatherDataStore = .init(
         weatherService: weatherService,
         geocodingService: geocodingService,
         locationService: locationService,
-        reachabilityService: reachabilityService
+        reachabilityService: reachabilityService,
+        settingsStore: settingsStore
     )
 }
 #endif

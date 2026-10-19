@@ -13,6 +13,7 @@ import SkyWizardModel
 import SkyWizardEnum
 import SkyWizardService
 
+
 final class WeatherDataStore: @unchecked Sendable, ObservableObject {
     @Published var currentTemperature: Int = 0
     @Published var realFeel: Int = 0
@@ -29,6 +30,7 @@ final class WeatherDataStore: @unchecked Sendable, ObservableObject {
     private var cancelable: Set<AnyCancellable> = .init()
     private var isLocationLoadingStarted: Bool = false
     private var isMonitoringForReachabilityStarted: Bool = false
+    private var rawWeatherData: WeatherData?
     
     var weatherTypeResource: WeatherTypeResource {
         currentWeatherType.getWeatherTypeResource()
@@ -38,12 +40,25 @@ final class WeatherDataStore: @unchecked Sendable, ObservableObject {
     let geocodingService: GeocodingService
     let locationService: LocationService
     let reachabilityService: ReachabilityService
+    let settingsStore: SettingsStore
     
-    init(weatherService: WeatherService, geocodingService: GeocodingService, locationService: LocationService, reachabilityService: ReachabilityService) {
+    init(weatherService: WeatherService, geocodingService: GeocodingService, locationService: LocationService, reachabilityService: ReachabilityService, settingsStore: SettingsStore) {
         self.weatherService = weatherService
         self.geocodingService = geocodingService
         self.locationService = locationService
         self.reachabilityService = reachabilityService
+        self.settingsStore = settingsStore
+
+        settingsStore.$useCelsius
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self, let data = self.rawWeatherData else { return }
+                Task { @MainActor in
+                    self.applyUnitConversion(to: data)
+                }
+            }
+            .store(in: &cancelable)
     }
     
     func loadWeather() {
@@ -159,17 +174,49 @@ final class WeatherDataStore: @unchecked Sendable, ObservableObject {
     
     @MainActor
     private func updateData(from weather: WeatherData) {
+        self.rawWeatherData = weather
+        self.weatherLoading = false
+        self.currentWeatherType = weatherService.getWeatherType(for: weather.current)
+        applyUnitConversion(to: weather)
+
+        Task {
+            try? await Task.sleep(for: .seconds(1))
+            self.greetingMessage = currentWeatherType.greeting
+        }
+    }
+
+    @MainActor
+    private func applyUnitConversion(to weather: WeatherData) {
+        let unit = settingsStore.useCelsius ? TemperatureUnit.celsius : TemperatureUnit.fahrenheit
+        let timeZone: TimeZone = {
+            guard let offset = weather.utcOffsetSeconds else { return .current }
+            return TimeZone(secondsFromGMT: offset) ?? .current
+        }()
+
         do {
-            self.weatherLoading = false
-            self.currentTemperature = Int(weather.current.temperature_2m)
-            self.realFeel = Int(weather.current.apparent_temperature)
-            self.currentWeatherType = weatherService.getWeatherType(for: weather.current)
-            self.hourlyWeatherData = try weatherService.getWeather(for: weather.hourly)
-            self.dailyWeatherData = try weatherService.getWeather(for: weather.daily)
-            
-            Task {
-                try? await Task.sleep(for: .seconds(1))
-                self.greetingMessage = currentWeatherType.greeting
+            self.currentTemperature = Int(unit.convert(weather.current.temperature_2m))
+            self.realFeel = Int(unit.convert(weather.current.apparent_temperature))
+
+            let hourlyData = try weatherService.getWeather(for: weather.hourly, timeZone: timeZone)
+            self.hourlyWeatherData = hourlyData.map { hour in
+                HourlyWeatherData(
+                    timeText: hour.timeText,
+                    weatherType: hour.weatherType,
+                    temperature: Int(unit.convert(Double(hour.temperature)))
+                )
+            }
+
+            let dailyData = try weatherService.getWeather(for: weather.daily, timeZone: timeZone)
+            self.dailyWeatherData = dailyData.map { day in
+                DailyWeatherData(
+                    dateString: day.dateString,
+                    tempHigh: Int(unit.convert(Double(day.tempHigh))),
+                    tempLow: Int(unit.convert(Double(day.tempLow))),
+                    weatherType: day.weatherType,
+                    sunrise: day.sunrise,
+                    sunset: day.sunset,
+                    timeZone: day.timeZone
+                )
             }
         } catch {
             self.error = error

@@ -1,15 +1,16 @@
-//
-//  DailyWeatherItem.swift
-//  SkyWizard-SwiftUI
-//
-//  Created by Hishara Dilshan on 05/11/2024.
-//
+// DailyWeatherItem.swift
+// SkyWizard-SwiftUI
+
+// Created by Hishara Dilshan on 05/11/2024.
 
 import SwiftUI
 import SkyWizardModel
 
+
 struct DailyWeatherItem: View {
     let weatherItem: DailyWeatherData
+    
+    @EnvironmentObject private var settings: SettingsStore
     
     var body: some View {
         HStack(spacing: 3) {
@@ -31,24 +32,18 @@ struct DailyWeatherItem: View {
 
 extension DailyWeatherItem {
     var tempLowView: some View {
-        HStack(alignment: .top, spacing: 0) {
-            Text("L \(weatherItem.tempLow)")
-                .font(.getFont(type: .medium, size: 15))
-                .padding(.top, 5)
-            Text("0")
-                .font(.getFont(type: .medium, size: 8))
-        }
-        .frame(width:44)
+        Text("L \(weatherItem.tempLow)\(settings.unitSymbol)")
+            .font(.getFont(type: .medium, size: 15))
+            .fixedSize()
+            .padding(.top, 5)
+            .frame(minWidth: 58, alignment: .leading)
     }
     
     var tempHighView: some View {
-        HStack(alignment: .top, spacing: 0) {
-            Text("H \(weatherItem.tempHigh)")
-                .font(.getFont(type: .medium, size: 15))
-                .padding(.top, 5)
-            Text("0")
-                .font(.getFont(type: .medium, size: 8))
-        }
-        .frame(width:44)
+        Text("H \(weatherItem.tempHigh)\(settings.unitSymbol)")
+            .font(.getFont(type: .medium, size: 15))
+            .fixedSize()
+            .padding(.top, 5)
+            .frame(minWidth: 58, alignment: .leading)
     }
 }

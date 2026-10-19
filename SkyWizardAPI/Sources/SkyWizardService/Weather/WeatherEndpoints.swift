@@ -16,8 +16,8 @@ enum WeatherEndpoints {
         queryParams["longitude"] = longitude
         queryParams["current"] = "temperature_2m,apparent_temperature,weather_code,is_day"
         queryParams["hourly"] = "temperature_2m,weather_code,is_day"
-        queryParams["daily"] = "weather_code,temperature_2m_max,temperature_2m_min"
-        queryParams["timezone"] = TimeZone.current.identifier
+        queryParams["daily"] = "weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset"
+        queryParams["timezone"] = "auto"
         return .init(path: .path("forecast"), method: .get, queryParameters: queryParams)
     }
 }

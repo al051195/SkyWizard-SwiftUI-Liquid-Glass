@@ -19,13 +19,14 @@ struct DailyWeatherView: View {
         }
         .frame(maxWidth: .infinity, alignment: .top)
         .frame(height: 260)
-        .glassEffect(.clear .interactive() .tint(.white.opacity(0.8)), in: .rect(cornerRadius: 30))
+        .glassEffect(.regular, in: .rect(cornerRadius: 33))
     }
 }
 
 #if DEBUG
 #Preview {
     DailyWeatherView(weatherData: [.sample])
+        .environmentObject(SettingsStore.dependency)
 }
 #endif
 

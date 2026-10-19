@@ -15,6 +15,15 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
+			<key>Weather Cool</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weather Cool</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
 			<key>Weather Mono</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -24,11 +33,11 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-			<key>Weather Cool</key>
+			<key>Weather Sunset</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>Weather Cool</string>
+					<string>Weather Sunset</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>

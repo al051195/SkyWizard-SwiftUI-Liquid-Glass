@@ -1,15 +1,16 @@
-//
-//  HourlyWeatherItem.swift
-//  SkyWizard-SwiftUI
-//
-//  Created by Hishara Dilshan on 05/11/2024.
-//
+// HourlyWeatherItem.swift
+// SkyWizard-SwiftUI
+
+// Created by Hishara Dilshan on 05/11/2024.
 
 import SwiftUI
 import SkyWizardModel
 
+
 struct HourlyWeatherItem: View {
     let data: HourlyWeatherData
+    
+    @EnvironmentObject private var settings: SettingsStore
     
     init(hourlyWeatherData: HourlyWeatherData) {
         self.data = hourlyWeatherData
@@ -25,10 +26,8 @@ struct HourlyWeatherItem: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 36, height: 36)
             HStack(alignment: .top, spacing: 3) {
-                Text("\(data.temperature)")
+                Text("\(data.temperature)\(settings.unitSymbol)")
                     .font(.getFont(type: .semibold, size: 20))
-                Text("0")
-                    .font(.getFont(type: .semibold, size: 10))
             }
             .foregroundStyle(.dayTitle)
         }

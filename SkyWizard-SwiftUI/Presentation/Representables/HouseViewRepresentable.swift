@@ -141,8 +141,13 @@ struct HouseViewRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
+        let lastIntensity = context.coordinator.sceneView.layer.value(forKey: "appliedLightIntensity") as? CGFloat
+        guard lastIntensity != lightIntensity else { return }
+
+        context.coordinator.sceneView.layer.setValue(lightIntensity, forKey: "appliedLightIntensity")
+
         SCNTransaction.begin()
-        SCNTransaction.animationDuration = 1.0
+        SCNTransaction.animationDuration = 0.3
         context.coordinator.lightNodeFirst?.light?.intensity = lightIntensity
         context.coordinator.lightNodeSecond?.light?.intensity = lightIntensity
         SCNTransaction.commit()

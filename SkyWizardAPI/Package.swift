@@ -1,4 +1,5 @@
 // swift-tools-version: 6.0
+// Package.swift
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -14,6 +15,10 @@ let package = Package(
         .library(
             name: "SkyWizardEnum",
             targets: ["SkyWizardEnum"]
+        ),
+        .library(
+            name: "SkyWizardUnit",
+            targets: ["SkyWizardUnit"]
         ),
         .library(
             name: "SkyWizardService",
@@ -32,6 +37,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(name: "SkyWizardModel", dependencies: ["SkyWizardEnum"]),
         .target(name: "SkyWizardEnum"),
+        .target(name: "SkyWizardUnit"),
         .target(name: "SkyWizardService", dependencies: ["SkyWizardModel", "NetworkingService", "SkyWizardLogger"]),
         .target(name: "SkyWizardLogger"),
         .testTarget(

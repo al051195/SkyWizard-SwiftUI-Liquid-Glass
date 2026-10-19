@@ -1,11 +1,15 @@
 {
+  "features" : [
+    "refractivity",
+    "specular-location"
+  ],
   "fill" : {
-    "automatic-gradient" : "extended-srgb:0.00000,0.47843,1.00000,1.00000"
+    "automatic-gradient" : "srgb:0.00000,0.47843,1.00000,1.00000"
   },
   "groups" : [
     {
       "blend-mode" : "normal",
-      "blur-material" : 0.5,
+      "blur-material" : 0.065,
       "layers" : [
         {
           "image-name" : "cloud.png",
@@ -13,8 +17,8 @@
           "position" : {
             "scale" : 1,
             "translation-in-points" : [
-              241.60986328125,
-              61.17724609375
+              240,
+              80
             ]
           }
         }
@@ -26,19 +30,27 @@
           -39.8175048828125
         ]
       },
-      "shadow" : {
-        "kind" : "neutral",
-        "opacity" : 0.5
+      "refractivity" : {
+        "depth" : 0.275,
+        "enabled" : true,
+        "strength" : 0.215
       },
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.72
+      },
+      "specular" : "inside",
       "translucency" : {
         "enabled" : true,
-        "value" : 0.8
+        "value" : 0.94
       }
     },
     {
       "blur-material" : 0.5,
+      "hidden" : false,
       "layers" : [
         {
+          "glass" : true,
           "image-name" : "sun-3.png",
           "name" : "sun-3",
           "position" : {
@@ -58,10 +70,16 @@
           0
         ]
       },
+      "refractivity" : {
+        "depth" : 0,
+        "enabled" : false,
+        "strength" : 0.5
+      },
       "shadow" : {
-        "kind" : "neutral",
+        "kind" : "layer-color",
         "opacity" : 0.75
       },
+      "specular" : "inside",
       "translucency" : {
         "enabled" : true,
         "value" : 0.5

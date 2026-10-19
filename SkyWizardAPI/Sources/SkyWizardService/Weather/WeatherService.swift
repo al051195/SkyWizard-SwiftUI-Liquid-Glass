@@ -14,8 +14,8 @@ public protocol WeatherService {
     typealias TaskType = Task<WeatherData, Error>
     func fetchWeather(for location: CLLocationCoordinate2D) async throws -> TaskType
     func getWeatherType(for current: WeatherData.CurrentWeatherData) -> CurrentWeatherType
-    func getWeather(for daily: WeatherData.DailyWeatherData) throws -> [DailyWeatherData]
-    func getWeather(for hourly: WeatherData.HourlyWeatherData) throws -> [HourlyWeatherData]
+    func getWeather(for daily: WeatherData.DailyWeatherData, timeZone: TimeZone) throws -> [DailyWeatherData]
+    func getWeather(for hourly: WeatherData.HourlyWeatherData, timeZone: TimeZone) throws -> [HourlyWeatherData]
 }
 
 public enum WeatherServiceError: LocalizedError {

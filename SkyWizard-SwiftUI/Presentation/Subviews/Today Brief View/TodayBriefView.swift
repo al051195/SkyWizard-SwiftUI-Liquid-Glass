@@ -1,13 +1,12 @@
-//
-//  TodayBriefView.swift
-//  SkyWizard-SwiftUI
-//
-//  Created by Antoine LEPRETRE on 22/10/2025.
-//
+// TodayBriefView.swift
+// SkyWizard-SwiftUI
+
+// Created by Antoine LEPRETRE on 22/10/2025.
 
 import SwiftUI
 import SkyWizardEnum
 import SkyWizardModel
+
 
 struct TodayBriefView: View {
     let today: DailyWeatherData
@@ -17,12 +16,15 @@ struct TodayBriefView: View {
     
     @State private var showSheet = false
     
+    @EnvironmentObject private var settings: SettingsStore
+    
     private func generateSummary() -> String {
         TodayBriefSummary(
             today: today,
             comparisonDay: comparisonDay,
             realFeel: realFeel,
-            hourlyData: hourlyData
+            hourlyData: hourlyData,
+            useCelsius: settings.useCelsius
         ).text
     }
     
@@ -43,9 +45,10 @@ struct TodayBriefView: View {
 
                 Text("View more")
                     .font(.getFont(type: .light, size: 14))
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(.black)
                     .padding(8)
-                    .glassEffect()
+                    .glassEffect(.clear)
+                    .shadow(color: .black.opacity(0.04), radius: 4)
             }
 
             Text(generateSummary())
@@ -61,14 +64,14 @@ struct TodayBriefView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity)
-        .glassEffect(.clear.tint(.white.opacity(0.8)).interactive(), in: .rect(cornerRadius: 30))
+        .glassEffect(.regular, in: .rect(cornerRadius: 33))
         .padding(.horizontal, 25)
         .onTapGesture {
             showSheet = true
         }
         .sheet(isPresented: $showSheet) {
             ExpandedSummarySheet(summary: generateSummary())
-                .presentationDetents([.medium, .large])
+                .presentationDetents([.medium, .medium])
                 .presentationDragIndicator(.visible)
         }
     }
@@ -79,6 +82,7 @@ private struct TodayBriefSummary {
     let comparisonDay: DailyWeatherData?
     let realFeel: Int
     let hourlyData: [HourlyWeatherData]
+    let useCelsius: Bool
     
     var text: String {
         Array(sentences.prefix(3)).joined(separator: " ")
@@ -121,7 +125,8 @@ private struct TodayBriefSummary {
     }
     
     private var temperatureRangeText: String {
-        "\(today.tempLow)°C to \(today.tempHigh)°C"
+        let unitSymbol = useCelsius ? "°C" : "°F"
+        return "\(today.tempHigh)\(unitSymbol) to \(today.tempLow)\(unitSymbol)"
     }
     
     private var realFeelSentence: String? {
@@ -130,10 +135,12 @@ private struct TodayBriefSummary {
         
         guard abs(delta) > 3 else { return nil }
         
+        let unitSymbol = useCelsius ? "°C" : "°F"
+        
         if delta < 0 {
-            return "It'll feel closer to \(realFeel)°C, so the wind chill may have a bit of bite."
+            return "It'll feel closer to \(realFeel)\(unitSymbol), so the wind chill may have a bit of bite."
         } else {
-            return "It'll feel closer to \(realFeel)°C, so you'll probably notice the humidity in the air."
+            return "It'll feel closer to \(realFeel)\(unitSymbol), so you'll probably notice the humidity in the air."
         }
     }
     
@@ -178,11 +185,11 @@ private struct TodayBriefSummary {
         let diff = today.tempHigh - comparisonDay.tempHigh
         
         if diff > 2 {
-            return "Compared with the next day, today runs warmer, so lighter layers should do."
+            return "Compared to the previous day, today runs warmer, so lighter layers should do."
         } else if diff < -2 {
-            return "Compared with the next day, today is cooler, so don't skip the extra layer."
+            return "Compared to the previous day, today is cooler, so don't skip the extra layer."
         } else {
-            return "Temperatures look pretty steady against the next day, without much of a swing."
+            return "Temperatures look pretty steady against yesterday, without too much of a swing."
         }
     }
 }
@@ -367,7 +374,9 @@ private struct TodayBriefPreviewContainer: View {
                 realFeel: realFeel,
                 hourlyData: hourlyData
             )
+            .environmentObject(SettingsStore.dependency)
         }
     }
 }
+
 #endif

@@ -33,15 +33,18 @@ struct WeatherMessagePopup: View {
                             .foregroundStyle(.gray.opacity(0.25))
                             .frame(width: 40, height: 40)
                             .overlay {
-                                Image(systemName: "multiply")
+                                Image(systemName: "xmark")
                                     .foregroundStyle(.daySubTitle)
                             }
+                            .glassEffect(.clear.interactive())
                     }
+                    .shadow(color: .black.opacity(0.24), radius: 12)
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .glassEffect(.clear.interactive().tint(.white.opacity(0.4)), in: .rect(cornerRadius: 40))
-                .shadow(radius: 24)
+                .glassEffect(.clear.tint(.white.opacity(0.4)), in: .rect(cornerRadius: 40))
+                .shadow(radius: 9)
+                .padding(.top, 12)
                 .padding(.bottom, 40)
                 .padding(.horizontal, 28)
                 .transition(

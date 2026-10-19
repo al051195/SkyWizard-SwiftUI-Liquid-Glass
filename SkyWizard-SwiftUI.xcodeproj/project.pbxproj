@@ -9,11 +9,19 @@
 /* Begin PBXBuildFile section */
 		71E2A6A62EBA957C00A87A08 /* Weather.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6A52EBA957C00A87A08 /* Weather.icon */; };
 		71E2A6AC2EBAAFB500A87A08 /* Weather Colorful.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6AA2EBAAFB500A87A08 /* Weather Colorful.icon */; };
-		71E2A6AD2EBAAFB500A87A08 /* Weather Mono.icon in Resources */ = {isa = PBXBuildFile; fileRef = 71E2A6AB2EBAAFB500A87A08 /* Weather Mono.icon */; };
 		98005CBC2FA3E1B700F3BC40 /* OtherLocationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98005CBB2FA3E1B700F3BC40 /* OtherLocationsStore.swift */; };
 		98005CC22FA3E1E900F3BC40 /* OtherLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98005CC02FA3E1E900F3BC40 /* OtherLocationsView.swift */; };
+		980F24B5305499AC003CF52A /* CompactScreenMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F24B4305499AC003CF52A /* CompactScreenMetrics.swift */; };
+		982B757C2FE58B4D00774504 /* Notelet in Frameworks */ = {isa = PBXBuildFile; productRef = 982B757D2FE58B4D00774504 /* Notelet */; };
+		982B757F2FE58B4D00774504 /* ReleaseNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982B757E2FE58B4D00774504 /* ReleaseNotes.swift */; };
+		9831300A2FE2ADAD00C96904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 983130092FE2ADAD00C96904 /* Assets.xcassets */; };
+		987982B8304DDFF1002DE0B2 /* SunriseSunsetGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987982B7304DDFF1002DE0B2 /* SunriseSunsetGraphView.swift */; };
 		98871E1E2EDCAB340097C3C7 /* Weather Cool.icon in Resources */ = {isa = PBXBuildFile; fileRef = 98871E1D2EDCAB340097C3C7 /* Weather Cool.icon */; };
 		988EE7CA2EABD7D7009AC059 /* LiquidGlassText in Frameworks */ = {isa = PBXBuildFile; productRef = 988EE7C92EABD7D7009AC059 /* LiquidGlassText */; };
+		98A0C1EA2FDF2AFA00D7AA31 /* Weather Sunset.icon in Resources */ = {isa = PBXBuildFile; fileRef = 98A0C1E92FDF2AFA00D7AA31 /* Weather Sunset.icon */; };
+		98A0DD012EBA0000000000A1 /* DuoLayoutProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0DD012EBA0000000000A0 /* DuoLayoutProbe.swift */; };
+		98C0DE01A1B2C3D4E5F60002 /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0DE01A1B2C3D4E5F60001 /* TemperatureUnit.swift */; };
+		98C0DE01A1B2C3D4E5F60004 /* AppSettings+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0DE01A1B2C3D4E5F60003 /* AppSettings+Dependencies.swift */; };
 		FD0841A32CD7202D00604BF3 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */; };
 		FD0841AB2CD7307900604BF3 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A72CD7307900604BF3 /* Montserrat-Light.ttf */; };
 		FD0841AC2CD7307900604BF3 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A52CD7307900604BF3 /* Montserrat-Black.ttf */; };
@@ -27,7 +35,6 @@
 		FD126D182CE76A7300B3654A /* WeatherMessagePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD126D172CE76A7300B3654A /* WeatherMessagePopup.swift */; };
 		FD1DF3122CEF91D10031B319 /* HouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1DF3112CEF91C90031B319 /* HouseView.swift */; };
 		FD32A9F12CB4484D002B8706 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD32A9EB2CB4484D002B8706 /* Preview Assets.xcassets */; };
-		FD32A9F22CB4484D002B8706 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD32A9ED2CB4484D002B8706 /* Assets.xcassets */; };
 		FD32A9F32CB4484D002B8706 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9EE2CB4484D002B8706 /* WeatherView.swift */; };
 		FD32A9F42CB4484D002B8706 /* SkyWizard_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9EF2CB4484D002B8706 /* SkyWizard_SwiftUIApp.swift */; };
 		FD3558E02CE52BF600E57013 /* LocationService+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3558DF2CE52BF600E57013 /* LocationService+Dependencies.swift */; };
@@ -104,12 +111,19 @@
 		712103E02EA8D94C00B5ABE0 /* SkyWizard-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SkyWizard-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E2A6A52EBA957C00A87A08 /* Weather.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Weather.icon; sourceTree = "<group>"; };
 		71E2A6AA2EBAAFB500A87A08 /* Weather Colorful.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Colorful.icon"; sourceTree = "<group>"; };
-		71E2A6AB2EBAAFB500A87A08 /* Weather Mono.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Mono.icon"; sourceTree = "<group>"; };
 		98005CBB2FA3E1B700F3BC40 /* OtherLocationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherLocationsStore.swift; sourceTree = "<group>"; };
 		98005CC02FA3E1E900F3BC40 /* OtherLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherLocationsView.swift; sourceTree = "<group>"; };
+		980F24B4305499AC003CF52A /* CompactScreenMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactScreenMetrics.swift; sourceTree = "<group>"; };
+		982B757E2FE58B4D00774504 /* ReleaseNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNotes.swift; sourceTree = "<group>"; };
+		983130092FE2ADAD00C96904 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		987982B7304DDFF1002DE0B2 /* SunriseSunsetGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunsetGraphView.swift; sourceTree = "<group>"; };
 		98871E1D2EDCAB340097C3C7 /* Weather Cool.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Cool.icon"; sourceTree = "<group>"; };
 		988EE7852EAAA47B009AC059 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		988EE7872EAAA47B009AC059 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		98A0C1E92FDF2AFA00D7AA31 /* Weather Sunset.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Weather Sunset.icon"; sourceTree = "<group>"; };
+		98A0DD012EBA0000000000A0 /* DuoLayoutProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoLayoutProbe.swift; sourceTree = "<group>"; };
+		98C0DE01A1B2C3D4E5F60001 /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
+		98C0DE01A1B2C3D4E5F60003 /* AppSettings+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+Dependencies.swift"; sourceTree = "<group>"; };
 		FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		FD0841A52CD7307900604BF3 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		FD0841A62CD7307900604BF3 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -124,7 +138,6 @@
 		FD126D172CE76A7300B3654A /* WeatherMessagePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMessagePopup.swift; sourceTree = "<group>"; };
 		FD1DF3112CEF91C90031B319 /* HouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseView.swift; sourceTree = "<group>"; };
 		FD32A9EB2CB4484D002B8706 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FD32A9ED2CB4484D002B8706 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD32A9EE2CB4484D002B8706 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		FD32A9EF2CB4484D002B8706 /* SkyWizard_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyWizard_SwiftUIApp.swift; sourceTree = "<group>"; };
 		FD3558DF2CE52BF600E57013 /* LocationService+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationService+Dependencies.swift"; sourceTree = "<group>"; };
@@ -191,6 +204,7 @@
 				FDB65E7B2CDC4F2600E4A52E /* NetworkingService in Frameworks */,
 				FD8574672CD9C572003D9D29 /* Lottie in Frameworks */,
 				FD4B92882CF0A84300EA05E7 /* SkyWizardModel in Frameworks */,
+				982B757C2FE58B4D00774504 /* Notelet in Frameworks */,
 				988EE7CA2EABD7D7009AC059 /* LiquidGlassText in Frameworks */,
 				FD4B92862CF0A84300EA05E7 /* SkyWizardEnum in Frameworks */,
 				FDB65E7E2CDC4F4E00E4A52E /* DependencyInjector in Frameworks */,
@@ -214,6 +228,14 @@
 				98005CC02FA3E1E900F3BC40 /* OtherLocationsView.swift */,
 			);
 			path = "Other Locations View";
+			sourceTree = "<group>";
+		};
+		987982B6304DDFC2002DE0B2 /* Sunrise Sunset View */ = {
+			isa = PBXGroup;
+			children = (
+				987982B7304DDFF1002DE0B2 /* SunriseSunsetGraphView.swift */,
+			);
+			path = "Sunrise Sunset View";
 			sourceTree = "<group>";
 		};
 		988EE7842EAAA47B009AC059 /* Frameworks */ = {
@@ -258,6 +280,7 @@
 				FD85747E2CD9CEC6003D9D29 /* Daily Weather */,
 				FD8574792CD9CE5D003D9D29 /* Sheet View */,
 				98005CC12FA3E1E900F3BC40 /* Other Locations View */,
+				987982B6304DDFC2002DE0B2 /* Sunrise Sunset View */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -307,10 +330,11 @@
 				FD949A722CDD613800F8CF48 /* Datastores */,
 				FD32A9F62CB44943002B8706 /* Util */,
 				FD32A9F52CB4493E002B8706 /* Other */,
+				98C0DE01A1B2C3D4E5F60001 /* TemperatureUnit.swift */,
 				71E2A6A52EBA957C00A87A08 /* Weather.icon */,
+				98A0C1E92FDF2AFA00D7AA31 /* Weather Sunset.icon */,
 				98871E1D2EDCAB340097C3C7 /* Weather Cool.icon */,
 				71E2A6AA2EBAAFB500A87A08 /* Weather Colorful.icon */,
-				71E2A6AB2EBAAFB500A87A08 /* Weather Mono.icon */,
 			);
 			path = "SkyWizard-SwiftUI";
 			sourceTree = "<group>";
@@ -323,7 +347,8 @@
 				FD8574682CD9C5A8003D9D29 /* Animations */,
 				FD0841A42CD7306E00604BF3 /* Fonts */,
 				FD32A9EF2CB4484D002B8706 /* SkyWizard_SwiftUIApp.swift */,
-				FD32A9ED2CB4484D002B8706 /* Assets.xcassets */,
+				982B757E2FE58B4D00774504 /* ReleaseNotes.swift */,
+				983130092FE2ADAD00C96904 /* Assets.xcassets */,
 				FD32A9EC2CB4484D002B8706 /* Preview Content */,
 			);
 			path = Other;
@@ -340,6 +365,8 @@
 				FD8574772CD9CE2D003D9D29 /* StatePreviewWrapper.swift */,
 				FD949A772CDD670E00F8CF48 /* LocalizedAlertError.swift */,
 				FDF41DEA2CE37AC8000C4FB4 /* OSLog+Extensions.swift */,
+				980F24B4305499AC003CF52A /* CompactScreenMetrics.swift */,
+				98A0DD012EBA0000000000A0 /* DuoLayoutProbe.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -436,6 +463,7 @@
 				FD949A702CDD4E0F00F8CF48 /* DataTransferService+Dependencies.swift */,
 				FD3558DF2CE52BF600E57013 /* LocationService+Dependencies.swift */,
 				FDFD8F9D2CE6807C000B3C18 /* Reachability+Dependencies.swift */,
+				98C0DE01A1B2C3D4E5F60003 /* AppSettings+Dependencies.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -544,6 +572,7 @@
 				FD4B92872CF0A84300EA05E7 /* SkyWizardModel */,
 				FD4B92892CF0A84300EA05E7 /* SkyWizardService */,
 				988EE7C92EABD7D7009AC059 /* LiquidGlassText */,
+				982B757D2FE58B4D00774504 /* Notelet */,
 			);
 			productName = "SkyWizard-SwiftUI";
 			productReference = FD4B92982CF0E07000EA05E7 /* SkyWizard-SwiftUI.app */;
@@ -602,6 +631,7 @@
 				FDB65E792CDC4F2600E4A52E /* XCRemoteSwiftPackageReference "NetworkingService" */,
 				FDB65E7C2CDC4F4E00E4A52E /* XCRemoteSwiftPackageReference "DependencyInjector" */,
 				988EE7C82EABD7D7009AC059 /* XCRemoteSwiftPackageReference "LiquidGlassText" */,
+				982B757B2FE58B4D00774504 /* XCRemoteSwiftPackageReference "notelet" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FD32A9D02CB446CF002B8706;
@@ -627,14 +657,15 @@
 				FD4B92902CF0AA0000EA05E7 /* rain_fall.sks in Resources */,
 				71E2A6A62EBA957C00A87A08 /* Weather.icon in Resources */,
 				98871E1E2EDCAB340097C3C7 /* Weather Cool.icon in Resources */,
+				98A0C1EA2FDF2AFA00D7AA31 /* Weather Sunset.icon in Resources */,
 				FD4B92912CF0AA0000EA05E7 /* Assets.xcassets in Resources */,
 				FD0841AE2CD7307900604BF3 /* Montserrat-Medium.ttf in Resources */,
 				FD0841AF2CD7307900604BF3 /* Montserrat-Regular.ttf in Resources */,
 				FDB65E732CDC030300E4A52E /* wizard_house.scn in Resources */,
 				71E2A6AC2EBAAFB500A87A08 /* Weather Colorful.icon in Resources */,
-				71E2A6AD2EBAAFB500A87A08 /* Weather Mono.icon in Resources */,
 				FD0841B02CD7307900604BF3 /* Montserrat-SemiBold.ttf in Resources */,
 				FDABC38D2CE778CF0085EC95 /* unknown_weather.json in Resources */,
+				9831300A2FE2ADAD00C96904 /* Assets.xcassets in Resources */,
 				FD8574702CD9C690003D9D29 /* snow.json in Resources */,
 				FD8574712CD9C690003D9D29 /* rainy.json in Resources */,
 				FD8574722CD9C690003D9D29 /* night_rainy.json in Resources */,
@@ -644,7 +675,6 @@
 				FD4B92952CF0B4E100EA05E7 /* night_cloudy.json in Resources */,
 				FD8574752CD9C690003D9D29 /* sunny.json in Resources */,
 				FD8574762CD9C690003D9D29 /* night.json in Resources */,
-				FD32A9F22CB4484D002B8706 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +695,12 @@
 				FDF41DEB2CE37AC8000C4FB4 /* OSLog+Extensions.swift in Sources */,
 				FD9C174C2CDE02E300401013 /* FormatStyle+Extensions.swift in Sources */,
 				FD949A742CDD614300F8CF48 /* WeatherDataStore.swift in Sources */,
+				980F24B5305499AC003CF52A /* CompactScreenMetrics.swift in Sources */,
+				98A0DD012EBA0000000000A1 /* DuoLayoutProbe.swift in Sources */,
+				98C0DE01A1B2C3D4E5F60002 /* TemperatureUnit.swift in Sources */,
+				98C0DE01A1B2C3D4E5F60004 /* AppSettings+Dependencies.swift in Sources */,
 				FD949A422CDC8DD800F8CF48 /* Application.swift in Sources */,
+				987982B8304DDFF1002DE0B2 /* SunriseSunsetGraphView.swift in Sources */,
 				FD949A712CDD4E0F00F8CF48 /* DataTransferService+Dependencies.swift in Sources */,
 				FDFD8F9E2CE6807C000B3C18 /* Reachability+Dependencies.swift in Sources */,
 				FD126D182CE76A7300B3654A /* WeatherMessagePopup.swift in Sources */,
@@ -686,6 +721,7 @@
 				FDE0B9662CD8082200017A6B /* SheetView.swift in Sources */,
 				FD32A9F32CB4484D002B8706 /* WeatherView.swift in Sources */,
 				FD0841B92CD7483A00604BF3 /* HourlyWeatherView.swift in Sources */,
+				982B757F2FE58B4D00774504 /* ReleaseNotes.swift in Sources */,
 				FD949A762CDD66D000F8CF48 /* View+Extensions.swift in Sources */,
 				FD949A782CDD670E00F8CF48 /* LocalizedAlertError.swift in Sources */,
 				FD8574802CD9CEF9003D9D29 /* DailyWeatherItem.swift in Sources */,
@@ -846,9 +882,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26H3FD1;
+				CURRENT_PROJECT_VERSION = 27H0FD0;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyWizard-SwiftUI/Other/Preview Content\"";
-				DEVELOPMENT_TEAM = 9Y9F764TSC;
+				DEVELOPMENT_TEAM = SB3859T737;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -858,26 +894,26 @@
 				INFOPLIST_FILE = "SkyWizard-SwiftUI/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = SkyWizard;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Sky Wizard needs access to your current location data to fetch weather for your location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "SkyWizard needs access to your current location data to fetch weather for your location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 26.3.1;
+				MARKETING_VERSION = 27.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -892,34 +928,34 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26H3FD1;
+				CURRENT_PROJECT_VERSION = 27H0FD0;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyWizard-SwiftUI/Other/Preview Content\"";
-				DEVELOPMENT_TEAM = 9Y9F764TSC;
+				DEVELOPMENT_TEAM = SB3859T737;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SkyWizard-SwiftUI/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = SkyWizard;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Sky Wizard needs access to your current location data to fetch weather for your location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "SkyWizard needs access to your current location data to fetch weather for your location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 26.3.1;
+				MARKETING_VERSION = 27.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -997,6 +1033,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		982B757B2FE58B4D00774504 /* XCRemoteSwiftPackageReference "notelet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mykolaharmash/notelet";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 1.2.0;
+				minimumVersion = 1.2.0;
+			};
+		};
 		988EE7C82EABD7D7009AC059 /* XCRemoteSwiftPackageReference "LiquidGlassText" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/DanielCrompton123/LiquidGlassText";
@@ -1032,6 +1077,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		982B757D2FE58B4D00774504 /* Notelet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 982B757B2FE58B4D00774504 /* XCRemoteSwiftPackageReference "notelet" */;
+			productName = Notelet;
+		};
 		988EE7C92EABD7D7009AC059 /* LiquidGlassText */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 988EE7C82EABD7D7009AC059 /* XCRemoteSwiftPackageReference "LiquidGlassText" */;

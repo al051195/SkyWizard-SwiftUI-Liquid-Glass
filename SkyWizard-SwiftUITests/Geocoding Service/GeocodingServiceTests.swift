@@ -9,6 +9,7 @@ import Foundation
 import Testing
 import DependencyInjector
 import CoreLocation
+import SkyWizardService
 
 @testable import SkyWizard_SwiftUI
 
