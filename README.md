@@ -2,7 +2,7 @@
 # Sky Wizard iOS
 
 <p>
-<img src="https://img.shields.io/badge/Swift-6.2-violet">
+<img src="https://img.shields.io/badge/Swift-violet">
 <img src="https://img.shields.io/badge/iOS-26-green">
 <img src="https://img.shields.io/badge/XCode-26.0-blue">
 </p>
