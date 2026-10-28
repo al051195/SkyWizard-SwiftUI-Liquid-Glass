@@ -1,4 +1,7 @@
-### **Based on [SkyWizard-SwiftUI by hishd](https://github.com/hishd/SkyWizard-SwiftUI)**
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/refs/heads/master/SkyWizard-SwiftUI/Other/Assets.xcassets/Weather-Preview.imageset/Weather-iOS-Default-1024%401x.png" width="180">
+
 # Sky Wizard iOS
 
 <p>
@@ -16,6 +19,8 @@
 	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone6.png" height="300">
 	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone7.png" height="300">
 </p>
+
+</div>
 
 ### What's new in version 27.0
 -  SkyWizard now includes early support for the new iPhone Duo. Enjoy the same app you love, now on a bigger screen.
