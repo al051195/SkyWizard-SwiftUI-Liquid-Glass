@@ -34,9 +34,9 @@
       ],
       "lighting" : "individual",
       "refractivity" : {
-        "depth" : 0.28,
+        "depth" : 0.384765625,
         "enabled" : true,
-        "strength" : 0.3
+        "strength" : 0.1541796875
       },
       "shadow" : {
         "kind" : "layer-color",
@@ -49,6 +49,7 @@
       }
     },
     {
+      "blur-material" : null,
       "layers" : [
         {
           "image-name" : "forecast_ic_sunny@3x.png",

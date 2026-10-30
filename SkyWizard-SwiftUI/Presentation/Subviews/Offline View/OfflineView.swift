@@ -31,7 +31,7 @@ extension OfflineView {
                 .foregroundStyle(.primary)
                 .symbolEffect(.pulse, options: .speed(3).repeating)
                 .padding()
-                .glassEffect(.clear.tint(.orange).interactive())
+                .glassEffect(.regular.tint(.orange).interactive())
                 .shadow(color: .black.opacity(0.2), radius: 16)
     }
 }
@@ -43,8 +43,7 @@ extension OfflineView {
             .font(.title3)
             .foregroundStyle(.primary)
             .padding()
-            .glassEffect(in : .rect(cornerRadius: 32))
-            .shadow(color: .black.opacity(0.14), radius: 16)
+            .glassEffect(.regular)
     }
     
 }

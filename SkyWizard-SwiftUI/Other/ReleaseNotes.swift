@@ -83,7 +83,7 @@ private enum SkyWizardReleaseNotes {
 
     static let currentVersionNotes: [NoteletVersionNotes] = [
         .init(
-            version: "27.0",
+            version: "27.1",
             items: [
                 currentVersionHighlights
             ]
@@ -92,7 +92,7 @@ private enum SkyWizardReleaseNotes {
 
     static let firstLaunchNotes: [NoteletVersionNotes] = [
         .init(
-            version: "27.0",
+            version: "27.1",
             items: [
                 welcomeHighlights,
                 forecastHighlights,
@@ -151,37 +151,22 @@ private enum SkyWizardReleaseNotes {
     )
 
     private static let currentVersionHighlights: NoteletVersionNoteItem = .list(
-        title: "New in 27.0",
+        title: "New in 27.1",
         rows: [
             .init(
-                symbolSystemName: "hammer.fill",
-                title: "Built with Xcode 27",
-                description: "This release will be the first version to be built with Xcode 27."
+                symbolSystemName: "wind",
+                title: "Wind direction",
+                description: "You can now view the wind direction in a beautiful glass compass."
             ),
             .init(
-                symbolSystemName: "rectangle.split.2x1",
-                title: "iPhone Duo ready !!",
-                description: "This version include early support for the new iPhone Duo, enjoy the same app you love, now on a bigger screen"
-            ),
-            .init(
-                symbolSystemName: "thermometer.variable",
-                title: "Temps metrics",
-                description: "You can now choose between Fahrenheit and Celsius."
-            ),
-            .init(
-                symbolSystemName: "sun.max.fill",
-                title: "Follow the sun",
-                description: "Every place now has a sun timeline: its sunrise and sunset at a glance, and a drag to scrub the day while the scene's light follows."
+                symbolSystemName: "cloud.rain.fill",
+                title: "Rain insight",
+                description: "Check out the new rain insight, which lets you know if it will rain in the next 4 hours"
             ),
             .init(
                 symbolSystemName: "app.specular",
-                title: "Sunset app icon",
-                description: "A new Sunset icon replaces the old Mono option for your Home Screen."
-            ),
-            .init(
-                symbolSystemName: "location.fill.viewfinder",
-                title: "Saved place details",
-                description: "Tap any saved place to open its full forecast with Today Brief, hourly, and daily views."
+                title: "Icons updates",
+                description: "All alternative icons have been completely redesigned to better reflect new iOS 27 icons capabilities."
             ),
             .init(
                 symbolSystemName: "paintbrush.pointed.fill",

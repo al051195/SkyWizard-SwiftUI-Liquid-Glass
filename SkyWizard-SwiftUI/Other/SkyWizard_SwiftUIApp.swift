@@ -25,6 +25,10 @@ struct SkyWizard_SwiftUIApp: App {
                 }
             }
             .compactScreenAware()
+            // Injects `isDuoInnerDisplay` above the app's views so wrapper
+            // readers see it; an injection inside WeatherView itself would
+            // not reach WeatherView's own `@Environment` wrappers.
+            .duoInnerDisplayAware()
         }
     }
 }

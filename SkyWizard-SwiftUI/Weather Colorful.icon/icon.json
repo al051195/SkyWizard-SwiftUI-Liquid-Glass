@@ -3,13 +3,116 @@
     "refractivity",
     "specular-location"
   ],
-  "fill" : {
-    "automatic-gradient" : "extended-srgb:0.00000,0.47843,1.00000,1.00000"
-  },
+  "fill-specializations" : [
+    {
+      "value" : {
+        "linear-gradient" : [
+          "display-p3:0.48242,0.80371,0.89014,1.00000",
+          "display-p3:0.26270,0.51758,0.70605,1.00000"
+        ]
+      }
+    },
+    {
+      "appearance" : "dark",
+      "value" : {
+        "linear-gradient" : [
+          "display-p3:0.48242,0.80371,0.89014,1.00000",
+          "display-p3:0.26270,0.51758,0.70605,1.00000"
+        ]
+      }
+    }
+  ],
   "groups" : [
     {
+      "blur-material" : 0.1,
+      "layers" : [
+        {
+          "image-name" : "forecast_ic_cloudy@3x.png",
+          "name" : "forecast_ic_cloudy@3x",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              152,
+              165
+            ]
+          }
+        }
+      ],
+      "refractivity" : {
+        "depth" : 0.8242578125,
+        "enabled" : true,
+        "strength" : 0.2366015625
+      },
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.5
+      },
+      "specular" : "inside",
+      "translucency" : {
+        "enabled" : true,
+        "value" : 1
+      }
+    },
+    {
+      "blur-material" : 0.16,
+      "layers" : [
+        {
+          "image-name" : "forecast_ic_rainy@3x.png",
+          "name" : "forecast_ic_rainy@3x",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -134,
+              59.5
+            ]
+          }
+        }
+      ],
+      "name" : "Group",
+      "refractivity" : {
+        "depth" : 0.3995703125,
+        "enabled" : true,
+        "strength" : 0.567421875
+      },
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.5
+      },
+      "specular" : "inside",
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.95
+      }
+    },
+    {
+      "layers" : [
+        {
+          "image-name" : "forecast_ic_sunny@3x.png",
+          "name" : "forecast_ic_sunny@3x",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              113.5,
+              -105.5
+            ]
+          }
+        }
+      ],
+      "name" : "Group",
+      "opacity" : 0.82,
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.5
+      },
+      "specular" : "outside",
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.42
+      }
+    },
+    {
       "blur-material" : 0.12,
-      "hidden" : false,
+      "hidden" : true,
       "layers" : [
         {
           "image-name" : "weather.png",

@@ -32,11 +32,9 @@ struct SunriseSunsetGraphView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            headerView
-
+        Group {
             if let sunrise, let sunset, sunset > sunrise {
-                SunPathGraph(sunrise: sunrise, sunset: sunset, timeZone: timeZone, scrubProgress: $scrubProgress)
+                SunArcTrack(sunrise: sunrise, sunset: sunset, dayLength: dayLength, timeZone: timeZone, scrubProgress: $scrubProgress)
             } else {
                 unavailableView
             }
@@ -48,74 +46,53 @@ struct SunriseSunsetGraphView: View {
 }
 
 private extension SunriseSunsetGraphView {
-    var headerView: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 8) {
-            HStack(spacing: 7) {
-                Image(systemName: "sun.horizon.fill")
-                    .font(.system(size: 15, weight: .semibold))
-                Text("Sunrise & Sunset")
-                    .font(.getFont(type: .bold, size: 19))
-            }
-
-            Spacer(minLength: 8)
-
-            if let dayLength {
-                Text(dayLength)
-                    .font(.getFont(type: .medium, size: 13))
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .glassEffect(.regular.interactive(), in: .capsule)
-            }
-        }
-        .foregroundStyle(.primary)
-    }
-
     var unavailableView: some View {
         VStack(alignment: .leading, spacing: 6) {
             Image(systemName: "cloud.slash")
                 .font(.system(size: 26, weight: .semibold))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.daySubTitle)
             Text("Sunrise & sunset times are not available for this forecast.")
                 .font(.getFont(type: .medium, size: 14))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.daySubTitle)
         }
         .frame(maxWidth: .infinity, minHeight: 90, alignment: .center)
         .multilineTextAlignment(.center)
     }
 }
 
-private struct SunPathGraph: View {
+/// The day drawn as a horizon dial. A dashed arc traces the full path and a
+/// gradient arc covers the daylight so far; the sun rides the arc as a small
+/// glass disc, and dragging across the card scrubs it (driving the house
+/// light through `scrubProgress`).
+private struct SunArcTrack: View {
     let sunrise: Date
     let sunset: Date
+    let dayLength: String?
     let timeZone: TimeZone
     @Binding var scrubProgress: CGFloat?
 
     @State private var now = Date()
     @State private var isScrubbing = false
+    /// Fraction where the current scrub began, so the sun starts moving from
+    /// where it is instead of teleporting under the finger.
+    @State private var scrubStartFraction: CGFloat = 0
+    /// Drives the eased ride home after release; cancelled by a new scrub.
+    @State private var returnTask: Task<Void, Never>?
 
     private var displayedFraction: CGFloat {
         scrubProgress ?? fraction(for: now)
     }
 
     var body: some View {
-        VStack(spacing: 12) {
-            ZStack {
-                GeometryReader { proxy in
-                    pathLayer(in: proxy.size)
-                        .contentShape(Rectangle())
-                        .simultaneousGesture(scrubGesture(width: proxy.size.width))
-                }
-                .frame(height: 132)
+        VStack(spacing: 14) {
+            GeometryReader { proxy in
+                arcLayer(in: proxy.size)
+                    .contentShape(Rectangle())
+                    .simultaneousGesture(scrubGesture(width: proxy.size.width))
             }
+            .frame(height: 120)
 
-            hourRuler
-
-            HStack {
-                timeLabel(icon: "sunrise.fill", tint: .orange, date: sunrise, title: "Sunrise", alignment: .leading)
-                Spacer()
-                timeLabel(icon: "sunset.fill", tint: .purple, date: sunset, title: "Sunset", alignment: .trailing)
-            }
+            horizonRow
         }
         .frame(maxWidth: .infinity)
         .onAppear {
@@ -123,50 +100,128 @@ private struct SunPathGraph: View {
         }
     }
 
-    private func pathLayer(in size: CGSize) -> some View {
-        let height = size.height
-        let baselineY = height * 0.86
+    // MARK: Arc
 
-        return ZStack {
-            SunPathCurve(baselineY: baselineY, progress: 1.0)
-                .stroke(
-                    LinearGradient(
-                        colors: [.orange.opacity(0.5), .purple.opacity(0.5)],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    ),
-                    style: StrokeStyle(lineWidth: 2.5, lineCap: .round, dash: [6, 5])
-                )
+    private func arcLayer(in size: CGSize) -> some View {
+        ZStack {
+            SunArc()
+                .stroke(.daySubTitle.opacity(0.35), style: StrokeStyle(lineWidth: 2, lineCap: .round, dash: [5, 6]))
 
-            SunPathCurve(baselineY: baselineY, progress: displayedFraction)
+            SunArc()
+                .trim(from: 0, to: min(max(displayedFraction, 0.001), 1))
                 .stroke(
                     LinearGradient(
                         colors: [.orange, .pink, .purple],
                         startPoint: .leading,
                         endPoint: .trailing
                     ),
-                    style: StrokeStyle(lineWidth: 4, lineCap: .round)
+                    style: StrokeStyle(lineWidth: 3.5, lineCap: .round)
                 )
+                .shadow(color: .black.opacity(0.1), radius: 6)
 
             TimelineView(.periodic(from: now, by: 60)) { context in
                 let fraction = scrubProgress ?? fraction(for: context.date)
-                let position = sunPosition(
-                    on: SunPathCurve(baselineY: baselineY, progress: 1.0),
-                    at: fraction,
-                    in: size
-                )
 
                 if (fraction > 0.01 && fraction < 0.99) || scrubProgress != nil {
-                    sunMarker(position: position)
+                    sunDisc(fraction: fraction, size: size)
                 }
 
-                if scrubProgress != nil, let fraction = scrubProgress {
-                    timeBubble(at: fraction, position: position, in: size)
+                if scrubProgress != nil {
+                    timeBubble(fraction: fraction, at: sunPosition(fraction: fraction, size: size), width: size.width)
                 }
             }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .top)
     }
+
+    /// The sun as a glass disc with a warm core — the same clear-glass recipe
+    /// as the wind card's compass, no custom materials.
+    private func sunDisc(fraction: CGFloat, size: CGSize) -> some View {
+        ZStack {
+            Circle()
+                .fill(
+                    LinearGradient(
+                        colors: [.orange, .yellow],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .frame(width: 10, height: 10)
+        }
+        .frame(width: 26, height: 26)
+        .glassEffect(.clear, in: .circle)
+        .shadow(color: .orange.opacity(0.35), radius: 6)
+        .position(sunPosition(fraction: fraction, size: size))
+    }
+
+    /// The scrubbed time floats centered above the horizon.
+    private func timeBubble(fraction: CGFloat, at position: CGPoint, width: CGFloat) -> some View {
+        let date = sunrise.addingTimeInterval(sunset.timeIntervalSince(sunrise) * fraction)
+
+        return Text(formattedTime(date))
+            .font(.getFont(type: .bold, size: 15))
+            .foregroundStyle(.dayTitle)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 5)
+            .glassEffect(.regular.interactive(), in: .capsule)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+    }
+
+    // MARK: Horizon
+
+    private var horizonRow: some View {
+        HStack(alignment: .center) {
+            timeLabel(icon: "sunrise.fill", tint: .orange, date: sunrise, title: "Sunrise")
+            Spacer()
+            if let dayLength {
+                VStack(spacing: 1) {
+                    Image(systemName: "sun.max")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(.orange)
+                    Text(dayLength)
+                        .font(.getFont(type: .medium, size: 13))
+                        .foregroundStyle(.daySubTitle)
+                }
+            }
+            Spacer()
+            timeLabel(icon: "sunset.fill", tint: .purple, date: sunset, title: "Sunset")
+        }
+    }
+
+    private func timeLabel(icon: String, tint: Color, date: Date, title: String) -> some View {
+        HStack(spacing: 10) {
+            Image(systemName: icon)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(tint)
+                .frame(width: 34, height: 34)
+                .glassEffect(.regular, in: .circle)
+
+            VStack(alignment: .leading, spacing: 1) {
+                Text(formattedTime(date))
+                    .font(.getFont(type: .bold, size: 17))
+                    .foregroundStyle(.dayTitle)
+                Text(title)
+                    .font(.getFont(type: .medium, size: 12))
+                    .foregroundStyle(.daySubTitle)
+            }
+        }
+    }
+
+    // MARK: Geometry
+
+    /// A point on the arc, matching the `SunArc` shape (centred on the rect's
+    /// bottom edge) for a 0…1 daylight fraction.
+    private func sunPosition(fraction: CGFloat, size: CGSize) -> CGPoint {
+        let angle = Angle.degrees(180 - Double(min(max(fraction, 0), 1) * 180)).radians
+        let radius = SunArc.arcRadius(in: size)
+        let center = CGPoint(x: size.width / 2, y: size.height)
+        return CGPoint(
+            x: center.x + radius * cos(angle),
+            y: center.y - radius * sin(angle)
+        )
+    }
+
+    // MARK: Scrub
 
     private func scrubGesture(width: CGFloat) -> some Gesture {
         DragGesture(minimumDistance: 0)
@@ -176,79 +231,68 @@ private struct SunPathGraph: View {
                 let vertical = abs(value.translation.height)
 
                 if !isScrubbing {
-                    guard horizontal > 3, horizontal >= vertical else { return }
+                    // Commit only on a clearly horizontal move so vertical
+                    // drags belong to the scroll view around the card.
+                    guard horizontal > 4, horizontal > vertical else { return }
                     isScrubbing = true
+                    scrubStartFraction = displayedFraction
+                    returnTask?.cancel()
                 }
 
-                scrubProgress = min(max(value.location.x / width, 0), 1)
+                let start = scrubStartFraction
+                let moved = value.translation.width / width
+                scrubProgress = min(max(start + moved, 0), 1)
             }
             .onEnded { _ in
                 isScrubbing = false
+                scrubStartFraction = 0
+                beginReturn()
+            }
+    }
+
+    /// When the finger lifts, the sun rides back home *along the arc*: the
+    /// scrubbed fraction eases towards the current time with a smoothstep, so
+    /// the marker, the daylight gradient and the house light all follow the
+    /// same path instead of snapping.
+    private func beginReturn() {
+        guard let from = scrubProgress else {
+            returnTask = nil
+            return
+        }
+
+        let target = fraction(for: .now)
+        let duration: TimeInterval = 0.7
+        // Already home — nothing to animate.
+        guard abs(from - target) > 0.001 else {
+            var transaction = Transaction()
+            withTransaction(transaction) {
                 scrubProgress = nil
             }
-    }
-
-    private var hourRuler: some View {
-        GeometryReader { proxy in
-            let width = proxy.size.width
-
-            ZStack(alignment: .top) {
-                Capsule()
-                    .fill(Color.primary.opacity(0.16))
-                    .frame(height: 2)
-                    .padding(.horizontal, 8)
-                    .padding(.top, 20)
-
-                ForEach(0..<5, id: \.self) { index in
-                    let fraction = CGFloat(index) / 4
-                    Text(rulerTime(at: fraction))
-                        .font(.getFont(type: .medium, size: 10))
-                        .foregroundStyle(.secondary)
-                        .position(x: 8 + (width - 16) * fraction, y: 7)
-                }
-
-                Rectangle()
-                    .fill(.orange)
-                    .frame(width: 3, height: 12)
-                    .clipShape(Capsule())
-                    .shadow(color: .orange.opacity(0.7), radius: 4)
-                    .position(x: 8 + (width - 16) * displayedFraction, y: 21)
-            }
-            .frame(width: width)
+            returnTask = nil
+            return
         }
-        .frame(height: 28)
-    }
 
-    private func sunMarker(position: CGPoint) -> some View {
-        Circle()
-            .fill(
-                LinearGradient(
-                    colors: [.orange, .yellow],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
-            .frame(width: 18, height: 18)
-            .overlay {
-                Circle()
-                    .stroke(.white.opacity(0.85), lineWidth: 2)
+        returnTask = Task { @MainActor in
+            let start = Date()
+            while !Task.isCancelled {
+                let t = min(Date().timeIntervalSince(start) / duration, 1)
+                let eased = t * t * (3 - 2 * t) // smoothstep
+                scrubProgress = from + (target - from) * CGFloat(eased)
+
+                if t >= 1 { break }
+                try? await Task.sleep(nanoseconds: 16_000_000)
             }
-            .shadow(color: .orange.opacity(0.65), radius: 8)
-            .position(position)
+            if !Task.isCancelled {
+                var transaction = Transaction()
+                withTransaction(transaction) {
+                    scrubProgress = nil
+                }
+            }
+            returnTask = nil
+        }
     }
 
-    private func timeBubble(at fraction: CGFloat, position: CGPoint, in size: CGSize) -> some View {
-        let date = sunrise.addingTimeInterval(sunset.timeIntervalSince(sunrise) * fraction)
-        let bubbleX = min(max(position.x, 38), size.width - 38)
-
-        return Text(formattedTime(date))
-            .font(.getFont(type: .bold, size: 15))
-            .padding(.horizontal, 12)
-            .padding(.vertical, 5)
-            .glassEffect(.clear.interactive(), in: .capsule)
-            .shadow(color: .black.opacity(0.15), radius: 6)
-            .position(x: bubbleX, y: 16)
-    }
+    // MARK: Time
 
     private func fraction(for date: Date) -> CGFloat {
         let total = sunset.timeIntervalSince(sunrise)
@@ -260,66 +304,35 @@ private struct SunPathGraph: View {
         return CGFloat(date.timeIntervalSince(sunrise) / total)
     }
 
-    private func sunPosition(on curve: SunPathCurve, at fraction: CGFloat, in size: CGSize) -> CGPoint {
-        let path = curve.path(in: CGRect(origin: .zero, size: size))
-        return path.trimmedPath(from: 0, to: min(max(fraction, 0), 1))
-            .currentPoint ?? CGPoint(x: 0, y: curve.baselineY)
-    }
-
-    private func rulerTime(at fraction: CGFloat) -> String {
-        let date = sunrise.addingTimeInterval(sunset.timeIntervalSince(sunrise) * fraction)
-        return formattedTime(date, omittingAMPM: true)
-    }
-
-    private func formattedTime(_ date: Date, omittingAMPM: Bool = false) -> String {
+    private func formattedTime(_ date: Date) -> String {
         var style = Date.FormatStyle(date: .omitted, time: .omitted)
-            .hour(omittingAMPM ? .defaultDigits(amPM: .omitted) : .defaultDigits(amPM: .abbreviated))
+            .hour(.defaultDigits(amPM: .abbreviated))
             .minute()
         style.timeZone = timeZone
         return date.formatted(style)
     }
-
-    private func timeLabel(icon: String, tint: Color, date: Date, title: String, alignment: HorizontalAlignment) -> some View {
-        VStack(alignment: alignment, spacing: 5) {
-            HStack(spacing: 6) {
-                Image(systemName: icon)
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(tint)
-                Text(formattedTime(date))
-                    .font(.getFont(type: .bold, size: 18))
-            }
-            Text(title)
-                .font(.getFont(type: .medium, size: 12))
-                .foregroundStyle(.secondary)
-        }
-    }
 }
 
-private struct SunPathCurve: Shape {
-    var baselineY: CGFloat
-    var progress: CGFloat
-
-    func path(in rect: CGRect) -> Path {
-        let width = rect.width
-        let height = rect.height
-        let left = CGPoint(x: 0, y: baselineY)
-        let right = CGPoint(x: width, y: baselineY)
-        let control = CGPoint(x: width / 2, y: baselineY - (height * 0.92))
-
-        var path = Path()
-        if progress <= 0 {
-            return path
-        }
-
-        path.move(to: left)
-        path.addQuadCurve(to: right, control: control)
-        let trimmed = path.trimmedPath(from: 0, to: min(max(progress, 0), 1))
-        return trimmed
+/// A semicircle: the sun's path from the left horizon to the right. The
+/// radius is capped by the rect's height so the arc's apex never rises into
+/// the header above the track, whatever the card's aspect ratio.
+private struct SunArc: Shape {
+    static func arcRadius(in size: CGSize) -> CGFloat {
+        // The apex of the semicircle is the radius itself, so never let it
+        // exceed the track height (minus headroom) and the full half-width.
+        min(size.width / 2 * 0.86, size.height * 0.86)
     }
 
-    var animatableData: CGFloat {
-        get { progress }
-        set { progress = newValue }
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.addArc(
+            center: CGPoint(x: rect.midX, y: rect.maxY),
+            radius: Self.arcRadius(in: rect.size),
+            startAngle: .degrees(180),
+            endAngle: .degrees(0),
+            clockwise: false
+        )
+        return path
     }
 }
 

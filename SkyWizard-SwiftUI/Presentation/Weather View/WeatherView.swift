@@ -23,6 +23,7 @@ struct WeatherView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
     @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
     @Environment(\.isCompactScreen) private var isCompactScreen
+    @Environment(\.isDuoInnerDisplay) private var isDuoInnerDisplay
     var isOnIpad: Bool {
         horizontalSizeClass == .regular && verticalSizeClass == .regular
     }
@@ -43,6 +44,17 @@ struct WeatherView: View {
     /// width — keeps the single-column scene with the drag-up sheet.
     private var usesArrangement: Bool {
         isOnIpad
+    }
+    
+    /// True while the Today Brief card is pinned over the 3D house on the
+    /// scene pane instead of sitting at the top of the forecast pane. That
+    /// combination is the iPhone Duo's inner display only: it runs the wide
+    /// arrangement *and* carries the fold in its display geometry. The iPad
+    /// runs the same arrangement but reports no fold, so it keeps the card in
+    /// the details pane; every compact display — all standard iPhones and the
+    /// Duo's outer display — keeps it in the drag-up sheet, unchanged.
+    private var isTodayBriefOnScene: Bool {
+        usesArrangement && isDuoInnerDisplay
     }
     
     var body: some View {
@@ -109,9 +121,12 @@ extension WeatherView {
     /// The wide-screen layout: the weather scene sits in a leading pane, the
     /// forecast details in a trailing one. The arrangement re-flows live as
     /// the device folds — side by side in landscape, stacked in portrait, and
-    /// the panes snap onto the two halves while partially folded. The card
-    /// content outside the panes stays scrolled out of the safe area of the
-    /// pane, so the status bar keeps its breathing room.
+    /// the panes snap onto the two halves while partially folded. On the
+    /// iPhone Duo's inner display the scene pane also carries the Today Brief
+    /// pinned to its bottom-leading corner, under the 3D house; the iPad runs
+    /// the same arrangement and keeps the card at the top of the details
+    /// pane. The card content outside the panes stays scrolled out of the
+    /// safe area of the pane, so the status bar keeps its breathing room.
     @available(iOS 27.1, *)
     private var arrangementLayout: some View {
         ZStack {
@@ -142,12 +157,25 @@ extension WeatherView {
             leadingStack
             weatherGreetingPopup
         }
+        .overlay(alignment: .bottomLeading) {
+            if isTodayBriefOnScene {
+                todayBriefCard
+                    // Capped at a readable measure so the card stays a card
+                    // on the widest pane instead of stretching 660 points,
+                    // and aligned leading so it hugs the corner it is in.
+                    .frame(maxWidth: 460, alignment: .leading)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 12)
+                    .padding(.bottom, 32)
+                    .duoLayoutProbe("brief-on-scene")
+            }
+        }
         .duoLayoutProbe("scene")
     }
-    
+
     private var weatherDetailsPane: some View {
         ScrollView {
-            weatherDetailsContent
+            weatherDetailsContent(showsTodayBrief: !isTodayBriefOnScene)
                 .frame(maxWidth: .infinity)
                 .padding(.top, 30)
                 .padding(.bottom, 24)
@@ -259,25 +287,27 @@ extension WeatherView {
     }
     
     /// The forecast content shown both in the drag-up sheet on phones and in
-    /// the detail pane on wide screens.
+    /// the detail pane on wide screens. `showsTodayBrief` controls whether
+    /// the Today Brief card leads the list; the Duo's scene pane draws it
+    /// pinned under the house instead, so the pane passes `false` there.
     @ViewBuilder
-    private var weatherDetailsContent: some View {
+    private func weatherDetailsContent(showsTodayBrief: Bool = true) -> some View {
         VStack {
-            if let today = weatherDataStore.dailyWeatherData.first {
-                let comparisonDay = weatherDataStore.dailyWeatherData.dropFirst().first
-                TodayBriefView(
-                    today: today,
-                    comparisonDay: comparisonDay,
-                    realFeel: weatherDataStore.realFeel,
-                    hourlyData: weatherDataStore.hourlyWeatherData
-                )
+            if showsTodayBrief {
+                todayBriefCard
             }
+
+            WeatherInsightCardsRow(
+                hourlyData: weatherDataStore.hourlyWeatherData,
+                windSpeed: weatherDataStore.currentWindSpeed,
+                windSpeedUnit: weatherDataStore.currentWindSpeedUnit,
+                windDirection: weatherDataStore.currentWindDirection
+            )
             
             HourlyWeatherView(hourlyData: weatherDataStore.hourlyWeatherData)
                 .padding(.horizontal, 25)
             DailyWeatherView(weatherData: weatherDataStore.dailyWeatherData)
                 .padding(.horizontal, 25)
-            
             SunriseSunsetGraphView(
                 sunrise: weatherDataStore.dailyWeatherData.first?.sunrise,
                 sunset: weatherDataStore.dailyWeatherData.first?.sunset,
@@ -285,7 +315,6 @@ extension WeatherView {
                 scrubProgress: $sunScrubProgress
             )
             .padding(.horizontal, 25)
-            .padding(.top, 4)
             
             HStack(spacing: 15) {
                 Button {
@@ -314,10 +343,25 @@ extension WeatherView {
             .padding(.horizontal, 25)
         }
     }
-    
+
+    /// The Today Brief summary card, taken straight from the store the same
+    /// way the details pane always drew it.
+    @ViewBuilder
+    private var todayBriefCard: some View {
+        if let today = weatherDataStore.dailyWeatherData.first {
+            let comparisonDay = weatherDataStore.dailyWeatherData.dropFirst().first
+            TodayBriefView(
+                today: today,
+                comparisonDay: comparisonDay,
+                realFeel: weatherDataStore.realFeel,
+                hourlyData: weatherDataStore.hourlyWeatherData
+            )
+        }
+    }
+
     private var sheetView: some View {
         SheetView(isBackgroundVisible: false, isPresented: $isPresented) {
-            weatherDetailsContent
+            weatherDetailsContent(showsTodayBrief: true)
         }
     }
     

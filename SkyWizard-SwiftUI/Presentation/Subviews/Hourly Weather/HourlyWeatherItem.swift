@@ -19,7 +19,7 @@ struct HourlyWeatherItem: View {
     var body: some View {
         VStack(spacing: 12) {
             Text(data.timeText)
-                .font(.getFont(type: .medium, size: 18))
+                .font(.getFont(type: .medium, size: 17))
                 .foregroundStyle(.dayTitle)
             Image(data.imageName)
                 .resizable()
@@ -27,7 +27,7 @@ struct HourlyWeatherItem: View {
                 .frame(width: 36, height: 36)
             HStack(alignment: .top, spacing: 3) {
                 Text("\(data.temperature)\(settings.unitSymbol)")
-                    .font(.getFont(type: .semibold, size: 20))
+                    .font(.getFont(type: .medium, size: 20))
             }
             .foregroundStyle(.dayTitle)
         }

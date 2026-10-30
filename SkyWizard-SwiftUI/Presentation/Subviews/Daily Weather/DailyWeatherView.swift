@@ -18,7 +18,7 @@ struct DailyWeatherView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .top)
-        .frame(height: 260)
+        .frame(height: 300)
         .glassEffect(.regular, in: .rect(cornerRadius: 33))
     }
 }

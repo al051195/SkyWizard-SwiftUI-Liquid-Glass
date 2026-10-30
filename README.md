@@ -1,11 +1,8 @@
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/refs/heads/master/SkyWizard-SwiftUI/Other/Assets.xcassets/Weather-Preview.imageset/Weather-iOS-Default-1024%401x.png" width="180">
-
+### **Based on [SkyWizard-SwiftUI by hishd](https://github.com/hishd/SkyWizard-SwiftUI)**
 # Sky Wizard iOS
 
 <p>
-<img src="https://img.shields.io/badge/Swift-violet">
+<img src="https://img.shields.io/badge/Swift-6.2-violet">
 <img src="https://img.shields.io/badge/iOS-26-green">
 <img src="https://img.shields.io/badge/XCode-26.0-blue">
 </p>
@@ -20,16 +17,12 @@
 	<img src="https://github.com/al051195/SkyWizard-SwiftUI-Liquid-Glass/blob/master/banners/iphone7.png" height="300">
 </p>
 
-</div>
-
-### What's new in version 27.0
--  SkyWizard now includes early support for the new iPhone Duo. Enjoy the same app you love, now on a bigger screen.
--  New app icon designed for iOS 27
--  You can now choose between Fahrenheit and Celsius to see temperatures the way you prefer.
--  Every place now has a sun timeline that shows sunrise and sunset at a glance.
+### What's new in version 2.2
+-  Freshly updated with a brand new liquid glass design
+-  New app icon designed for iOS 26
+-  Alternative AppIcons
+-  AI-powered weather summary
 -  New Wizard Message design
--  Tap any saved place to open its full forecast, with Today Brief, hourly, and daily views.
--  Several interface details were polished to make the app feel cleaner and smoother.
 
 
 ### Overview
@@ -37,6 +30,7 @@
 Sky Wizard is a weather information application, developed for iOS devices. The app is open source and developed using **[open metro](https://open-meteo.com/)** api for weather updated and **[photon](https://photon.komoot.io)** for reverse geocoding.
 Both the integrated api services are free for non-commercial use and required an api key based on the number of api calls.
 
+**Note:** The application is mainly designed for iOS and iPadOS devices and therefore the Apple Silicon Mac experience will be less optimized.�
 
 ### Project Structure
 
@@ -84,7 +78,7 @@ The 3D object was downloaded from the sketchfab platform (credits go to the owne
 
 ### API's used
 
- - **SceneKit** is used to render the house model.
+ -  **SceneKit** is used to render the house model.
  - **Lottie** is used to render the animations.
  - **DependencyInjector** is used to manage application dependencies using property wrappers.
  - **NetworkingService** is used to handle http network calls.
@@ -92,6 +86,6 @@ The 3D object was downloaded from the sketchfab platform (credits go to the owne
 ### Upcoming Features
 
 - More 3D objects
-- Better Duo support
+- Getting weather updates on different cities (currently set to users location only)
 - Widgets
 

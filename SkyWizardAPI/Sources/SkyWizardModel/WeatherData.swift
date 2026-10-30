@@ -77,6 +77,45 @@ extension WeatherData {
         public let apparent_temperature: Double
         public let weather_code: Int
         public let is_day: Int
+        public let wind_speed_10m: Double
+        public let wind_direction_10m: Int
+
+        public init(
+            temperature_2m: Double,
+            apparent_temperature: Double,
+            weather_code: Int,
+            is_day: Int,
+            wind_speed_10m: Double = 0,
+            wind_direction_10m: Int = 0
+        ) {
+            self.temperature_2m = temperature_2m
+            self.apparent_temperature = apparent_temperature
+            self.weather_code = weather_code
+            self.is_day = is_day
+            self.wind_speed_10m = wind_speed_10m
+            self.wind_direction_10m = wind_direction_10m
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.temperature_2m = try container.decode(Double.self, forKey: .temperature_2m)
+            self.apparent_temperature = try container.decode(Double.self, forKey: .apparent_temperature)
+            self.weather_code = try container.decode(Int.self, forKey: .weather_code)
+            self.is_day = try container.decode(Int.self, forKey: .is_day)
+            // Wind fields default to zero so responses (and mocks) built
+            // before they existed keep decoding.
+            self.wind_speed_10m = try container.decodeIfPresent(Double.self, forKey: .wind_speed_10m) ?? 0
+            self.wind_direction_10m = try container.decodeIfPresent(Int.self, forKey: .wind_direction_10m) ?? 0
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case temperature_2m
+            case apparent_temperature
+            case weather_code
+            case is_day
+            case wind_speed_10m
+            case wind_direction_10m
+        }
     }
 }
 

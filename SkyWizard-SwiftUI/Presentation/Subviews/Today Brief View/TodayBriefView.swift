@@ -47,8 +47,10 @@ struct TodayBriefView: View {
                     .font(.getFont(type: .light, size: 14))
                     .foregroundStyle(.black)
                     .padding(8)
-                    .glassEffect(.clear)
-                    .shadow(color: .black.opacity(0.04), radius: 4)
+                    .glassEffect(.regular.interactive())
+                    .onTapGesture {
+                        showSheet = true
+                    }
             }
 
             Text(generateSummary())
@@ -66,9 +68,6 @@ struct TodayBriefView: View {
         .frame(maxWidth: .infinity)
         .glassEffect(.regular, in: .rect(cornerRadius: 33))
         .padding(.horizontal, 25)
-        .onTapGesture {
-            showSheet = true
-        }
         .sheet(isPresented: $showSheet) {
             ExpandedSummarySheet(summary: generateSummary())
                 .presentationDetents([.medium, .medium])

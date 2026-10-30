@@ -14,7 +14,7 @@ enum WeatherEndpoints {
         var queryParams: [String: Any] = [:]
         queryParams["latitude"] = latitude
         queryParams["longitude"] = longitude
-        queryParams["current"] = "temperature_2m,apparent_temperature,weather_code,is_day"
+        queryParams["current"] = "temperature_2m,apparent_temperature,weather_code,is_day,wind_speed_10m,wind_direction_10m"
         queryParams["hourly"] = "temperature_2m,weather_code,is_day"
         queryParams["daily"] = "weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset"
         queryParams["timezone"] = "auto"

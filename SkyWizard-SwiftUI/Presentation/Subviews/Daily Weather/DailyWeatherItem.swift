@@ -26,7 +26,7 @@ struct DailyWeatherItem: View {
         }
         .foregroundStyle(.dayTitle)
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, 14)
+        .padding(.horizontal, 23)
     }
 }
 

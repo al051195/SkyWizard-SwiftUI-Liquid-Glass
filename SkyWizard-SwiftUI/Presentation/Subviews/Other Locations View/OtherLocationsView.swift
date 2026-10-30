@@ -188,10 +188,11 @@ private extension SavedLocationCardView {
             .buttonStyle(.plain)
 
             Button(action: onDelete) {
-                Image(systemName: "minus.circle.fill")
-                    .font(.title3)
+                Image(systemName: "xmark.circle.fill")
+                    .resizable()
+                    .scaledToFit()
                     .foregroundStyle(.primary)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 22, height: 22)
                     .glassEffect(.regular.interactive())
             }
             .buttonStyle(.plain)
@@ -368,6 +369,13 @@ private extension SavedLocationForecastDetailView {
                 comparisonDay: comparisonDay,
                 realFeel: weatherDataStore.realFeel,
                 hourlyData: weatherDataStore.hourlyWeatherData
+            )
+
+            WeatherInsightCardsRow(
+                hourlyData: weatherDataStore.hourlyWeatherData,
+                windSpeed: weatherDataStore.currentWindSpeed,
+                windSpeedUnit: weatherDataStore.currentWindSpeedUnit,
+                windDirection: weatherDataStore.currentWindDirection
             )
 
             HourlyWeatherView(hourlyData: weatherDataStore.hourlyWeatherData)

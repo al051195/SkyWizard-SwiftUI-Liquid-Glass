@@ -4,14 +4,18 @@
     "specular-location"
   ],
   "fill" : {
-    "automatic-gradient" : "srgb:0.00000,0.47843,1.00000,1.00000"
+    "linear-gradient" : [
+      "display-p3:0.32251,0.59863,0.98877,1.00000",
+      "display-p3:0.22021,0.44336,0.83008,1.00000"
+    ]
   },
   "groups" : [
     {
       "blend-mode" : "normal",
-      "blur-material" : 0.065,
+      "blur-material" : 0.08,
       "layers" : [
         {
+          "blend-mode" : "normal",
           "image-name" : "cloud.png",
           "name" : "cloud",
           "position" : {
@@ -23,6 +27,7 @@
           }
         }
       ],
+      "lighting" : "individual",
       "position" : {
         "scale" : 1.1,
         "translation-in-points" : [
@@ -36,10 +41,10 @@
         "strength" : 0.215
       },
       "shadow" : {
-        "kind" : "layer-color",
-        "opacity" : 0.72
+        "kind" : "neutral",
+        "opacity" : 0.66
       },
-      "specular" : "inside",
+      "specular" : "outside",
       "translucency" : {
         "enabled" : true,
         "value" : 0.94
@@ -76,7 +81,7 @@
         "strength" : 0.5
       },
       "shadow" : {
-        "kind" : "layer-color",
+        "kind" : "neutral",
         "opacity" : 0.75
       },
       "specular" : "inside",

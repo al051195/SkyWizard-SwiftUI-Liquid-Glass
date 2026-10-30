@@ -22,6 +22,7 @@
 		98A0DD012EBA0000000000A1 /* DuoLayoutProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0DD012EBA0000000000A0 /* DuoLayoutProbe.swift */; };
 		98C0DE01A1B2C3D4E5F60002 /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0DE01A1B2C3D4E5F60001 /* TemperatureUnit.swift */; };
 		98C0DE01A1B2C3D4E5F60004 /* AppSettings+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0DE01A1B2C3D4E5F60003 /* AppSettings+Dependencies.swift */; };
+		98D2A0B02EBB0001000000A0 /* DuoInnerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D2A0B12EBB0001000000A0 /* DuoInnerDisplay.swift */; };
 		FD0841A32CD7202D00604BF3 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */; };
 		FD0841AB2CD7307900604BF3 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A72CD7307900604BF3 /* Montserrat-Light.ttf */; };
 		FD0841AC2CD7307900604BF3 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0841A52CD7307900604BF3 /* Montserrat-Black.ttf */; };
@@ -124,6 +125,7 @@
 		98A0DD012EBA0000000000A0 /* DuoLayoutProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoLayoutProbe.swift; sourceTree = "<group>"; };
 		98C0DE01A1B2C3D4E5F60001 /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
 		98C0DE01A1B2C3D4E5F60003 /* AppSettings+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+Dependencies.swift"; sourceTree = "<group>"; };
+		98D2A0B12EBB0001000000A0 /* DuoInnerDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoInnerDisplay.swift; sourceTree = "<group>"; };
 		FD0841A22CD7202D00604BF3 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		FD0841A52CD7307900604BF3 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		FD0841A62CD7307900604BF3 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -192,6 +194,11 @@
 		71E2A6A72EBAAC1E00A87A08 /* Settings View */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Settings View";
+			sourceTree = "<group>";
+		};
+		98D2A0B12EBB0002000000A2 /* Wind & Rain Insights View */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Wind & Rain Insights View";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -281,6 +288,7 @@
 				FD8574792CD9CE5D003D9D29 /* Sheet View */,
 				98005CC12FA3E1E900F3BC40 /* Other Locations View */,
 				987982B6304DDFC2002DE0B2 /* Sunrise Sunset View */,
+				98D2A0B12EBB0002000000A2 /* Wind & Rain Insights View */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -367,6 +375,7 @@
 				FDF41DEA2CE37AC8000C4FB4 /* OSLog+Extensions.swift */,
 				980F24B4305499AC003CF52A /* CompactScreenMetrics.swift */,
 				98A0DD012EBA0000000000A0 /* DuoLayoutProbe.swift */,
+				98D2A0B12EBB0001000000A0 /* DuoInnerDisplay.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -562,6 +571,7 @@
 			fileSystemSynchronizedGroups = (
 				715F0D312EA912FE00C11912 /* Today Brief View */,
 				71E2A6A72EBAAC1E00A87A08 /* Settings View */,
+				98D2A0B12EBB0002000000A2 /* Wind & Rain Insights View */,
 			);
 			name = "SkyWizard-SwiftUI";
 			packageProductDependencies = (
@@ -697,6 +707,7 @@
 				FD949A742CDD614300F8CF48 /* WeatherDataStore.swift in Sources */,
 				980F24B5305499AC003CF52A /* CompactScreenMetrics.swift in Sources */,
 				98A0DD012EBA0000000000A1 /* DuoLayoutProbe.swift in Sources */,
+				98D2A0B02EBB0001000000A0 /* DuoInnerDisplay.swift in Sources */,
 				98C0DE01A1B2C3D4E5F60002 /* TemperatureUnit.swift in Sources */,
 				98C0DE01A1B2C3D4E5F60004 /* AppSettings+Dependencies.swift in Sources */,
 				FD949A422CDC8DD800F8CF48 /* Application.swift in Sources */,
@@ -882,7 +893,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27H0FD0;
+				CURRENT_PROJECT_VERSION = 27H0FD1;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyWizard-SwiftUI/Other/Preview Content\"";
 				DEVELOPMENT_TEAM = SB3859T737;
 				ENABLE_APP_SANDBOX = YES;
@@ -907,7 +918,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 27.0;
+				MARKETING_VERSION = 27.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -928,7 +939,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27H0FD0;
+				CURRENT_PROJECT_VERSION = 27H0FD1;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyWizard-SwiftUI/Other/Preview Content\"";
 				DEVELOPMENT_TEAM = SB3859T737;
 				ENABLE_PREVIEWS = YES;
@@ -949,7 +960,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 27.0;
+				MARKETING_VERSION = 27.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Al051195.SkyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

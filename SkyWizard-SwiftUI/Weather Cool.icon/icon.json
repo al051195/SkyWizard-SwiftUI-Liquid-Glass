@@ -4,12 +4,15 @@
     "specular-location"
   ],
   "fill" : {
-    "automatic-gradient" : "extended-srgb:0.00000,0.47843,1.00000,1.00000"
+    "linear-gradient" : [
+      "display-p3:0.32986,0.60997,1.00000,1.00000",
+      "display-p3:0.22375,0.44873,0.83594,1.00000"
+    ]
   },
   "groups" : [
     {
       "blend-mode" : "normal",
-      "blur-material" : 0.16,
+      "blur-material" : 0.12,
       "layers" : [
         {
           "glass" : true,
@@ -26,12 +29,12 @@
       ],
       "lighting" : "individual",
       "refractivity" : {
-        "depth" : 0.55,
+        "depth" : 0.2506640625,
         "enabled" : true,
-        "strength" : 0.3
+        "strength" : 0.186875
       },
       "shadow" : {
-        "kind" : "layer-color",
+        "kind" : "neutral",
         "opacity" : 0.75
       },
       "specular" : "inside",
@@ -58,7 +61,7 @@
       ],
       "lighting" : "individual",
       "shadow" : {
-        "kind" : "layer-color",
+        "kind" : "neutral",
         "opacity" : 0.75
       },
       "specular" : "inside",

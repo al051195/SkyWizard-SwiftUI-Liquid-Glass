@@ -17,6 +17,10 @@ import SkyWizardService
 final class WeatherDataStore: @unchecked Sendable, ObservableObject {
     @Published var currentTemperature: Int = 0
     @Published var realFeel: Int = 0
+    @Published var currentWindSpeed: Int = 0
+    @Published var currentWindDirection: Int = 0
+    /// Localised with the temperature setting: °C goes with km/h, °F with mph.
+    @Published var currentWindSpeedUnit: String = "km/h"
     @Published var currentCity: String = "No Location"
     @Published var currentWeatherType: CurrentWeatherType = .day_sunny
     @Published var hourlyWeatherData: [HourlyWeatherData] = .init()
@@ -196,6 +200,15 @@ final class WeatherDataStore: @unchecked Sendable, ObservableObject {
         do {
             self.currentTemperature = Int(unit.convert(weather.current.temperature_2m))
             self.realFeel = Int(unit.convert(weather.current.apparent_temperature))
+
+            if settingsStore.useCelsius {
+                self.currentWindSpeed = Int(weather.current.wind_speed_10m.rounded())
+                self.currentWindSpeedUnit = "km/h"
+            } else {
+                self.currentWindSpeed = Int((weather.current.wind_speed_10m * 0.621371).rounded())
+                self.currentWindSpeedUnit = "mph"
+            }
+            self.currentWindDirection = weather.current.wind_direction_10m
 
             let hourlyData = try weatherService.getWeather(for: weather.hourly, timeZone: timeZone)
             self.hourlyWeatherData = hourlyData.map { hour in
